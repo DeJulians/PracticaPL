@@ -16,6 +16,18 @@ public class gramaticaBaseListener implements gramaticaListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterAxioma(gramaticaParser.AxiomaContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAxioma(gramaticaParser.AxiomaContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterDcl(gramaticaParser.DclContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -383,6 +395,30 @@ public class gramaticaBaseListener implements gramaticaListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitResv(gramaticaParser.ResvContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterTyp(gramaticaParser.TypContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitTyp(gramaticaParser.TypContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterVoi(gramaticaParser.VoiContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitVoi(gramaticaParser.VoiContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

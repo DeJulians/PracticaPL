@@ -1,7 +1,10 @@
 grammar gramatica;
 
+axioma: dcl;
+
 dcl: ctelist
-| varlist;
+| varlist
+;
 
 ctelist: '#define' CONST_DEF_IDENTIFIER simpvalue
 | ctelist 'define' CONST_DEF_IDENTIFIER simpvalue
@@ -18,17 +21,18 @@ varlist: vardef ';'
 
 vardef: tbas IDENTIFIER
 | tbas IDENTIFIER '=' simpvalue
+| funcdef
 ;
 
-tbas: 'integer'
-| 'float'
-| 'string'
+tbas: TYPE
 | tvoid
 ;
 
-tvoid: 'void';
+tvoid: VOID;
 
-funcdef: funchead '{' code '}';
+funcdef: funchead '{' code '}'
+| funchead '{' code 'return' '(' IDENTIFIER ')' ';' '}'
+;
 
 funchead: tbas IDENTIFIER '(' typedef1 ')';
 
@@ -75,7 +79,7 @@ explist: exp
 | exp ',' explist
 ;
 
-text:(id | const | int | real | string | com | aux | simb | resv)+;
+text:(id | const | int | real | string | com | aux | simb | resv | typ | voi)+;
 id: IDENTIFIER;
 const: CONST_DEF_IDENTIFIER;
 int: NUMERIC_INTEGER_CONST;
@@ -85,19 +89,18 @@ com:COMENTS;
 aux: Aux_text;
 simb: Aux_simb;
 resv:RESERVED;
+typ: TYPE;
+voi: VOID;
 
-RESERVED: ('integer'|'float'|'string'|'long'|'fork'|'break'|'enum'
-            |'register'|'case'|'return'|'char'|'const'|'for'|'if'
-            |'else'|'switch'|'union'|'default'|'do'|'double'|'enum'
-            |'typedef'|'union'|'short'|'unsigned'|'void'|'goto'|'sizeof'
-            |'volatile'|'static'|'while'|'struct'|'int'|'_Packed');
+RESERVED: ('break'|'register'|'case'|'return'|'for'|'if'|'else'|'switch'|'union'|'default'|'do'|'typedef'|'union'
+          |'short'|'unsigned'|'goto'|'sizeof'|'volatile'|'static'|'while'|'struct'|'_Packed'|'const');
+TYPE: ('integer'|'float'|'string'|'long'|'enum'|'char'|'double'|'int');
+VOID: 'void';
 CONST_DEF_IDENTIFIER: [A-Z]* ([A-Z] | '_' | [0-9])* [A-Z]+ ([A-Z] | '_' | [0-9])*;
 IDENTIFIER: [a-z]* ([a-z] | '_' | [0-9])* [a-z]+ ([a-z] | '_' | [0-9])*;
 NUMERIC_INTEGER_CONST: ('+'|'-')?[0-9]+;
 NUMERIC_REAL_CONST: (NUMERIC_INTEGER_CONST'.'[0-9]+ | ('+'|'-')?'.'[0-9]+ | NUMERIC_INTEGER_CONST('.'[0-9]+)?('e'|'E')('+'|'-')?[0-9]+);
-STRING_CONST: ('\''(Aux_text | Aux_simb)+'\'' | '"'(Aux_text | Aux_simb)+'"');
+STRING_CONST: ('\''([a-zA-Z0-9] | Aux_text)*'\'' | '"'(Aux_text | [a-zA-Z0-9])*'"');
 COMENTS: ('//' Aux_text+ '//' | '/*'(Aux_text | Aux_simb)+'*/');
-Aux_text:  ('{' | IDENTIFIER | NUMERIC_REAL_CONST | NUMERIC_INTEGER_CONST
-           | '.' | ',' | '-' | '_' | ':' | '!' | '¡' | '?' | '¿' | '='
-           | '\'' | '\\"' | '(' | ')' | ';' | '+' | '}' | '*');
-Aux_simb: (' '|'\n');
+Aux_text:  ('{' | '(' | ')' | '}' | '\'' | '"' | '\r' | '.');
+Aux_simb: (' '|'\n') -> skip;

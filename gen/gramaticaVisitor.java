@@ -10,6 +10,12 @@ import org.antlr.v4.runtime.tree.ParseTreeVisitor;
  */
 public interface gramaticaVisitor<T> extends ParseTreeVisitor<T> {
 	/**
+	 * Visit a parse tree produced by {@link gramaticaParser#axioma}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAxioma(gramaticaParser.AxiomaContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link gramaticaParser#dcl}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -195,4 +201,16 @@ public interface gramaticaVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitResv(gramaticaParser.ResvContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link gramaticaParser#typ}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTyp(gramaticaParser.TypContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link gramaticaParser#voi}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVoi(gramaticaParser.VoiContext ctx);
 }

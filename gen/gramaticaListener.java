@@ -7,6 +7,16 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  */
 public interface gramaticaListener extends ParseTreeListener {
 	/**
+	 * Enter a parse tree produced by {@link gramaticaParser#axioma}.
+	 * @param ctx the parse tree
+	 */
+	void enterAxioma(gramaticaParser.AxiomaContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link gramaticaParser#axioma}.
+	 * @param ctx the parse tree
+	 */
+	void exitAxioma(gramaticaParser.AxiomaContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link gramaticaParser#dcl}.
 	 * @param ctx the parse tree
 	 */
@@ -316,4 +326,24 @@ public interface gramaticaListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitResv(gramaticaParser.ResvContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link gramaticaParser#typ}.
+	 * @param ctx the parse tree
+	 */
+	void enterTyp(gramaticaParser.TypContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link gramaticaParser#typ}.
+	 * @param ctx the parse tree
+	 */
+	void exitTyp(gramaticaParser.TypContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link gramaticaParser#voi}.
+	 * @param ctx the parse tree
+	 */
+	void enterVoi(gramaticaParser.VoiContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link gramaticaParser#voi}.
+	 * @param ctx the parse tree
+	 */
+	void exitVoi(gramaticaParser.VoiContext ctx);
 }
