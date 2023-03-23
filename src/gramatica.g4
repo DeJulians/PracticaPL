@@ -1,5 +1,27 @@
 grammar gramatica;
 
+dcl: ctelist | varlist;
+ctelist: '#define' CONST_DEF_IDENTIFIER simpvalue | ctelist 'define' CONST_DEF_IDENTIFIER simpvalue;
+simpvalue: NUMERIC_INTEGER_CONST | NUMERIC_REAL_CONST | STRING_CONST;
+varlist: vardef ';'| varlist vardef ';';
+vardef: tbas IDENTIFIER | tbas IDENTIFIER '=' simpvalue;
+tbas: 'integer' | 'float' | 'string' | tvoid;
+tvoid: 'void';
+funcdef: funchead '{' code '}';
+funchead: tbas IDENTIFIER '(' typedef1 ')';
+typedef1: (typedef2)?;
+typedef2: tbas IDENTIFIER | typedef2 ',' tbas IDENTIFIER;
+mainhead: tvoid 'Main' '(' typedef1 ')';
+code: (code sent)?;
+sent: asig ';' | funccall ';' | vardef ';'
+asig: IDENTIFIER '=' exp;
+exp: exp op exp | factor;
+op: '+' | '-' | '*' | 'DIV' | 'MOD';
+factor: simpvalue | '(' exp ')' | funccall;
+funccall: IDENTIFIER subpparamlist | CONST_DEF_IDENTIFIER subpparamlist;
+subpparamlist: ('(' explist ')')?;
+explist: exp | exp ',' explist;
+
 text:(id | const | int | real | string | com | aux | simb | resv)+;
 id: IDENTIFIER;
 const: CONST_DEF_IDENTIFIER;
