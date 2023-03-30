@@ -10,11 +10,29 @@ import org.antlr.v4.runtime.tree.ParseTreeVisitor;
  */
 public interface gramaticaVisitor<T> extends ParseTreeVisitor<T> {
 	/**
-	 * Visit a parse tree produced by {@link gramaticaParser#axioma}.
+	 * Visit a parse tree produced by {@link gramaticaParser#program}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitAxioma(gramaticaParser.AxiomaContext ctx);
+	T visitProgram(gramaticaParser.ProgramContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link gramaticaParser#dcllist}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDcllist(gramaticaParser.DcllistContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link gramaticaParser#funlist}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunlist(gramaticaParser.FunlistContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link gramaticaParser#sentlist}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSentlist(gramaticaParser.SentlistContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link gramaticaParser#dcl}.
 	 * @param ctx the parse tree
