@@ -1,83 +1,52 @@
 grammar gramatica;
 
-axioma: dcl;
+program: dcllist funlist sentlist;
+dcllist:  | dcllist dcl;
+funlist: | funlist funcdef;
+sentlist:mainhead '{' code'}';
+//axioma: dcl;
 
-dcl: ctelist
-| varlist
-;
+dcl: ctelist| varlist;
 
-ctelist: '#define' CONST_DEF_IDENTIFIER simpvalue
-| ctelist 'define' CONST_DEF_IDENTIFIER simpvalue
-;
+ctelist: '#define' CONST_DEF_IDENTIFIER simpvalue| ctelist 'define' CONST_DEF_IDENTIFIER simpvalue;
 
-simpvalue: NUMERIC_INTEGER_CONST
-| NUMERIC_REAL_CONST
-| STRING_CONST
-;
+simpvalue: NUMERIC_INTEGER_CONST| NUMERIC_REAL_CONST| STRING_CONST;
 
-varlist: vardef ';'
-| varlist vardef ';'
-;
+varlist: vardef ';'| varlist vardef ';';
 
-vardef: tbas IDENTIFIER
-| tbas IDENTIFIER '=' simpvalue
-| funcdef
-;
+vardef: tbas IDENTIFIER| tbas IDENTIFIER '=' simpvalue| funcdef;
 
-tbas: TYPE
-| tvoid
-;
+tbas: TYPE| tvoid;
 
 tvoid: VOID;
 
-funcdef: funchead '{' code '}'
-| funchead '{' code 'return' '(' IDENTIFIER ')' ';' '}'
-;
+funcdef: funchead '{' code '}'| funchead '{' code 'return' '(' IDENTIFIER ')' ';' '}';
 
 funchead: tbas IDENTIFIER '(' typedef1 ')';
 
 typedef1: (typedef2)?;
 
-typedef2: tbas IDENTIFIER
-| typedef2 ',' tbas IDENTIFIER
-;
+typedef2: tbas IDENTIFIER| typedef2 ',' tbas IDENTIFIER;
 
 mainhead: tvoid 'Main' '(' typedef1 ')';
 
 code: ((sent)* sent)?;
 
-sent: asig ';'
-| funccall ';'
-| vardef ';'
-;
+sent: asig ';'| funccall ';'| vardef ';';
 
 asig: IDENTIFIER '=' exp;
 
-exp: exp op exp
-| factor
-;
+exp: exp op exp| factor;
 
-op: '+'
-| '-'
-| '*'
-| 'DIV'
-| 'MOD'
-;
+op: '+'| '-'| '*'| 'DIV'| 'MOD';
 
-factor: simpvalue
-| '(' exp ')'
-| funccall
-;
+factor: simpvalue| '(' exp ')'| funccall;
 
-funccall: IDENTIFIER subpparamlist
-| CONST_DEF_IDENTIFIER subpparamlist
-;
+funccall: IDENTIFIER subpparamlist| CONST_DEF_IDENTIFIER subpparamlist;
 
 subpparamlist: ('(' explist ')')?;
 
-explist: exp
-| exp ',' explist
-;
+explist: exp| exp ',' explist;
 
 text:(id | const | int | real | string | com | aux | simb | resv | typ | voi)+;
 id: IDENTIFIER;
