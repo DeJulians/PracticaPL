@@ -7,15 +7,45 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  */
 public interface gramaticaListener extends ParseTreeListener {
 	/**
-	 * Enter a parse tree produced by {@link gramaticaParser#axioma}.
+	 * Enter a parse tree produced by {@link gramaticaParser#program}.
 	 * @param ctx the parse tree
 	 */
-	void enterAxioma(gramaticaParser.AxiomaContext ctx);
+	void enterProgram(gramaticaParser.ProgramContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link gramaticaParser#axioma}.
+	 * Exit a parse tree produced by {@link gramaticaParser#program}.
 	 * @param ctx the parse tree
 	 */
-	void exitAxioma(gramaticaParser.AxiomaContext ctx);
+	void exitProgram(gramaticaParser.ProgramContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link gramaticaParser#dcllist}.
+	 * @param ctx the parse tree
+	 */
+	void enterDcllist(gramaticaParser.DcllistContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link gramaticaParser#dcllist}.
+	 * @param ctx the parse tree
+	 */
+	void exitDcllist(gramaticaParser.DcllistContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link gramaticaParser#funlist}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunlist(gramaticaParser.FunlistContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link gramaticaParser#funlist}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunlist(gramaticaParser.FunlistContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link gramaticaParser#sentlist}.
+	 * @param ctx the parse tree
+	 */
+	void enterSentlist(gramaticaParser.SentlistContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link gramaticaParser#sentlist}.
+	 * @param ctx the parse tree
+	 */
+	void exitSentlist(gramaticaParser.SentlistContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link gramaticaParser#dcl}.
 	 * @param ctx the parse tree
