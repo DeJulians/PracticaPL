@@ -1,22 +1,25 @@
 grammar gramatica;
 
 program: dcllist funlist sentlist;
-dcllist:  | dcllist dcl;
+dcllist:  | dcl dcllist;
 funlist: | funlist funcdef;
 sentlist:mainhead '{' code'}';
 //axioma: dcl;
 
-dcl: ctelist| varlist;
-
-ctelist: '#define' CONST_DEF_IDENTIFIER simpvalue| ctelist 'define' CONST_DEF_IDENTIFIER simpvalue;
+dcl: ctelist | varlist;
+//ctelist: '#define' CONST_DEF_IDENTIFIER simpvalue | ctelist '#define' CONST_DEF_IDENTIFIER simpvalue;
+ctelist: '#define' CONST_DEF_IDENTIFIER simpvalue ctelist1;
+ctelist1: '#define' CONST_DEF_IDENTIFIER simpvalue ctelist1 | ;
 
 simpvalue: NUMERIC_INTEGER_CONST| NUMERIC_REAL_CONST| STRING_CONST;
 
-varlist: vardef ';'| varlist vardef ';';
-
+//varlist: vardef ';' | varlist vardef ';'
+varlist: vardef ';' varlist1;
+varlist1: vardef ';' varlist1 | ;
+//puede haber recurs izq
 vardef: tbas IDENTIFIER| tbas IDENTIFIER '=' simpvalue| funcdef;
 
-tbas: TYPE| tvoid;
+tbas: TYPE | tvoid;
 
 tvoid: VOID;
 
@@ -31,8 +34,12 @@ typedef2: tbas IDENTIFIER| typedef2 ',' tbas IDENTIFIER;
 mainhead: tvoid 'Main' '(' typedef1 ')';
 
 code: ((sent)* sent)?;
-
+//DUDA SOBRE SI HAY RECURS IZQ O NO DETERMINISMO
 sent: asig ';'| funccall ';'| vardef ';';
+/*
+sent: vardef_sent ';';
+vardef_sent: asig | funccall | vardef;
+*/
 
 asig: IDENTIFIER '=' exp;
 
