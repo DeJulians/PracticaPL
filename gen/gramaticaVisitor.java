@@ -1,4 +1,4 @@
-// Generated from java-escape by ANTLR 4.11.1
+// Generated from C:/Users/USER/OneDrive/Documentos/GitHub/PracticaPL/src\gramatica.g4 by ANTLR 4.12.0
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -46,6 +46,12 @@ public interface gramaticaVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitCtelist(gramaticaParser.CtelistContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link gramaticaParser#ctelist1}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCtelist1(gramaticaParser.Ctelist1Context ctx);
+	/**
 	 * Visit a parse tree produced by {@link gramaticaParser#simpvalue}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -57,6 +63,12 @@ public interface gramaticaVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitVarlist(gramaticaParser.VarlistContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link gramaticaParser#varlist1}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVarlist1(gramaticaParser.Varlist1Context ctx);
 	/**
 	 * Visit a parse tree produced by {@link gramaticaParser#vardef}.
 	 * @param ctx the parse tree
@@ -159,12 +171,6 @@ public interface gramaticaVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitExplist(gramaticaParser.ExplistContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link gramaticaParser#text}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitText(gramaticaParser.TextContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link gramaticaParser#id}.
 	 * @param ctx the parse tree

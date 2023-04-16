@@ -1,4 +1,4 @@
-// Generated from java-escape by ANTLR 4.11.1
+// Generated from C:/Users/USER/OneDrive/Documentos/GitHub/PracticaPL/src\gramatica.g4 by ANTLR 4.12.0
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -67,6 +67,16 @@ public interface gramaticaListener extends ParseTreeListener {
 	 */
 	void exitCtelist(gramaticaParser.CtelistContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link gramaticaParser#ctelist1}.
+	 * @param ctx the parse tree
+	 */
+	void enterCtelist1(gramaticaParser.Ctelist1Context ctx);
+	/**
+	 * Exit a parse tree produced by {@link gramaticaParser#ctelist1}.
+	 * @param ctx the parse tree
+	 */
+	void exitCtelist1(gramaticaParser.Ctelist1Context ctx);
+	/**
 	 * Enter a parse tree produced by {@link gramaticaParser#simpvalue}.
 	 * @param ctx the parse tree
 	 */
@@ -86,6 +96,16 @@ public interface gramaticaListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitVarlist(gramaticaParser.VarlistContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link gramaticaParser#varlist1}.
+	 * @param ctx the parse tree
+	 */
+	void enterVarlist1(gramaticaParser.Varlist1Context ctx);
+	/**
+	 * Exit a parse tree produced by {@link gramaticaParser#varlist1}.
+	 * @param ctx the parse tree
+	 */
+	void exitVarlist1(gramaticaParser.Varlist1Context ctx);
 	/**
 	 * Enter a parse tree produced by {@link gramaticaParser#vardef}.
 	 * @param ctx the parse tree
@@ -256,16 +276,6 @@ public interface gramaticaListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitExplist(gramaticaParser.ExplistContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link gramaticaParser#text}.
-	 * @param ctx the parse tree
-	 */
-	void enterText(gramaticaParser.TextContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link gramaticaParser#text}.
-	 * @param ctx the parse tree
-	 */
-	void exitText(gramaticaParser.TextContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link gramaticaParser#id}.
 	 * @param ctx the parse tree

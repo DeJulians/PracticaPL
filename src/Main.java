@@ -2,12 +2,6 @@ import java.io.*;
 import org.antlr.v4.runtime.*;
 
 
-
-/*
-El nombre ClasePrincipal es arbitrario, escoge el que prefieras.
-Sustituye Numbers por el nombre del fichero que contiene la especificación de la gramática ANTLR
-(extensión .g4)
-*/
 public class Main {
     public static void main(String[] args) {
         try{
@@ -21,18 +15,9 @@ public class Main {
             CommonTokenStream tokens = new CommonTokenStream(analex);
 // Crear el objeto correspondiente al analizador sintáctico
             gramaticaParser anasint = new gramaticaParser(tokens);
-/*
-Si se quiere pasar al analizador algún objeto externo con el que trabajar,
-este deberá ser de una clase del mismo paquete
-Aquí se le llama "sintesis", pero puede ser cualquier nombre.
-NumbersParser anasint = new NumbersParser(tokens, new sintesis());
-*/
-/*
-Comenzar el análisis llamando al axioma de la gramática
-Atención, sustituye "AxiomaDeLaGramatica" por el nombre del axioma de tu
-gramática
-*/
-            anasint.text();
+
+            anasint.dcl();
+            System.out.println("TODO ESTA OK");
         } catch (org.antlr.v4.runtime.RecognitionException e) {
 //Fallo al reconocer la entrada
             System.err.println("REC " + e.getMessage());

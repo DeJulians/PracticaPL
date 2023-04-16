@@ -27,7 +27,7 @@ funcdef: funchead '{' code '}'| funchead '{' code 'return' '(' IDENTIFIER ')' ';
 
 funchead: tbas IDENTIFIER '(' typedef1 ')';
 
-typedef1: (typedef2)?;
+typedef1: typedef2 | ;
 
 typedef2: tbas IDENTIFIER| typedef2 ',' tbas IDENTIFIER;
 
@@ -47,15 +47,14 @@ exp: exp op exp| factor;
 
 op: '+'| '-'| '*'| 'DIV'| 'MOD';
 
-factor: simpvalue| '(' exp ')'| funccall;
+factor: simpvalue | '(' exp ')'| funccall;
 
 funccall: IDENTIFIER subpparamlist| CONST_DEF_IDENTIFIER subpparamlist;
 
-subpparamlist: ('(' explist ')')?;
+subpparamlist: '(' explist ')' | ;
 
 explist: exp| exp ',' explist;
 
-text:(id | const | int | real | string | com | aux | simb | resv | typ | voi)+;
 id: IDENTIFIER;
 const: CONST_DEF_IDENTIFIER;
 int: NUMERIC_INTEGER_CONST;
