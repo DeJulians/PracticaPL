@@ -55,6 +55,8 @@ subpparamlist: '(' explist ')' | ;
 
 explist: exp| exp ',' explist;
 
+text: (id|const| int| real  string | com | aux | simb | resv | typ | voi);
+
 id: IDENTIFIER;
 const: CONST_DEF_IDENTIFIER;
 int: NUMERIC_INTEGER_CONST;
