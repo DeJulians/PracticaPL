@@ -4,9 +4,9 @@ program: dcllist funlist sentlist;
 dcllist:  | dcl dcllist;
 funlist: | funlist funcdef;
 sentlist:mainhead '{' code'}';
+//axioma: dcl;
 
-
-dcl: ctelist | varlist;
+dcl: ctelist | varlist{System.out.println("Calcular division ");};
 //ctelist: '#define' CONST_DEF_IDENTIFIER simpvalue | ctelist '#define' CONST_DEF_IDENTIFIER simpvalue;
 ctelist: '#define' CONST_DEF_IDENTIFIER simpvalue ctelist1;
 ctelist1: '#define' CONST_DEF_IDENTIFIER simpvalue ctelist1 | ;
@@ -29,17 +29,13 @@ funchead: tbas IDENTIFIER '(' typedef1 ')';
 
 typedef1: typedef2 | ;
 
-//typedef2: tbas IDENTIFIER| typedef2 ',' tbas IDENTIFIER;
-
-typedef2: tbas IDENTIFIER typedef22;
-typedef22: | ',' tbas IDENTIFIER typedef22;
+typedef2: tbas IDENTIFIER | typedef2 ',' tbas IDENTIFIER;
 
 mainhead: tvoid 'Main' '(' typedef1 ')';
 
 code: ((sent)* sent)?;
 //DUDA SOBRE SI HAY RECURS IZQ O NO DETERMINISMO
-sent: asig ';'| funccall ';'| vardef ';';
-
+sent: asig ';' | funccall ';'| vardef ';';
 /*
 sent: vardef_sent ';';
 vardef_sent: asig | funccall | vardef;
