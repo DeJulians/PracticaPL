@@ -1,4 +1,4 @@
-// Generated from C:/Users/USER/OneDrive/Documentos/GitHub/PracticaPL/src\gramatica.g4 by ANTLR 4.12.0
+// Generated from java-escape by ANTLR 4.11.1
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -112,6 +112,12 @@ public interface gramaticaVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitTypedef2(gramaticaParser.Typedef2Context ctx);
 	/**
+	 * Visit a parse tree produced by {@link gramaticaParser#typedef22}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTypedef22(gramaticaParser.Typedef22Context ctx);
+	/**
 	 * Visit a parse tree produced by {@link gramaticaParser#mainhead}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -171,6 +177,12 @@ public interface gramaticaVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitExplist(gramaticaParser.ExplistContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link gramaticaParser#text}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitText(gramaticaParser.TextContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link gramaticaParser#id}.
 	 * @param ctx the parse tree

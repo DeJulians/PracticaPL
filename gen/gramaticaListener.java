@@ -1,4 +1,4 @@
-// Generated from C:/Users/USER/OneDrive/Documentos/GitHub/PracticaPL/src\gramatica.g4 by ANTLR 4.12.0
+// Generated from java-escape by ANTLR 4.11.1
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -177,6 +177,16 @@ public interface gramaticaListener extends ParseTreeListener {
 	 */
 	void exitTypedef2(gramaticaParser.Typedef2Context ctx);
 	/**
+	 * Enter a parse tree produced by {@link gramaticaParser#typedef22}.
+	 * @param ctx the parse tree
+	 */
+	void enterTypedef22(gramaticaParser.Typedef22Context ctx);
+	/**
+	 * Exit a parse tree produced by {@link gramaticaParser#typedef22}.
+	 * @param ctx the parse tree
+	 */
+	void exitTypedef22(gramaticaParser.Typedef22Context ctx);
+	/**
 	 * Enter a parse tree produced by {@link gramaticaParser#mainhead}.
 	 * @param ctx the parse tree
 	 */
@@ -276,6 +286,16 @@ public interface gramaticaListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitExplist(gramaticaParser.ExplistContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link gramaticaParser#text}.
+	 * @param ctx the parse tree
+	 */
+	void enterText(gramaticaParser.TextContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link gramaticaParser#text}.
+	 * @param ctx the parse tree
+	 */
+	void exitText(gramaticaParser.TextContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link gramaticaParser#id}.
 	 * @param ctx the parse tree
