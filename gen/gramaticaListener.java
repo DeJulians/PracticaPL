@@ -177,6 +177,16 @@ public interface gramaticaListener extends ParseTreeListener {
 	 */
 	void exitTypedef2(gramaticaParser.Typedef2Context ctx);
 	/**
+	 * Enter a parse tree produced by {@link gramaticaParser#typedef3}.
+	 * @param ctx the parse tree
+	 */
+	void enterTypedef3(gramaticaParser.Typedef3Context ctx);
+	/**
+	 * Exit a parse tree produced by {@link gramaticaParser#typedef3}.
+	 * @param ctx the parse tree
+	 */
+	void exitTypedef3(gramaticaParser.Typedef3Context ctx);
+	/**
 	 * Enter a parse tree produced by {@link gramaticaParser#mainhead}.
 	 * @param ctx the parse tree
 	 */
@@ -276,6 +286,16 @@ public interface gramaticaListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitExplist(gramaticaParser.ExplistContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link gramaticaParser#text}.
+	 * @param ctx the parse tree
+	 */
+	void enterText(gramaticaParser.TextContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link gramaticaParser#text}.
+	 * @param ctx the parse tree
+	 */
+	void exitText(gramaticaParser.TextContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link gramaticaParser#id}.
 	 * @param ctx the parse tree

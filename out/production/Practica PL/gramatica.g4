@@ -21,7 +21,7 @@ vardef: tbas IDENTIFIER| tbas IDENTIFIER '=' simpvalue| funcdef;
 
 tbas: TYPE | tvoid;
 
-tvoid: VOID{System.out.println("Calcular multiplicación.");};
+tvoid: VOID;
 
 funcdef: funchead '{' code '}'| funchead '{' code 'return' '(' IDENTIFIER ')' ';' '}';
 
@@ -31,7 +31,7 @@ typedef1: typedef2 | ;
 
 typedef2: tbas IDENTIFIER | typedef3;
 
-typedef3:  ',' tbas IDENTIFIER | ;
+typedef3:  | ',' tbas IDENTIFIER typedef3;
 
 mainhead: tvoid 'Main' '(' typedef1 ')';
 

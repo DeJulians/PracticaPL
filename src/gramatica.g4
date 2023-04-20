@@ -29,9 +29,7 @@ funchead: tbas IDENTIFIER '(' typedef1 ')';
 
 typedef1: typedef2 | ;
 
-typedef2: tbas IDENTIFIER | typedef3;
-
-typedef3:  ',' tbas IDENTIFIER | ;
+typedef2: tbas IDENTIFIER | typedef2 ',' tbas IDENTIFIER;
 
 mainhead: tvoid 'Main' '(' typedef1 ')';
 

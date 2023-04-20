@@ -220,6 +220,18 @@ public class gramaticaBaseListener implements gramaticaListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterTypedef3(gramaticaParser.Typedef3Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitTypedef3(gramaticaParser.Typedef3Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterMainhead(gramaticaParser.MainheadContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -335,6 +347,18 @@ public class gramaticaBaseListener implements gramaticaListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitExplist(gramaticaParser.ExplistContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterText(gramaticaParser.TextContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitText(gramaticaParser.TextContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
