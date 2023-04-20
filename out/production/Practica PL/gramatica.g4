@@ -21,7 +21,7 @@ vardef: tbas IDENTIFIER| tbas IDENTIFIER '=' simpvalue| funcdef;
 
 tbas: TYPE | tvoid;
 
-tvoid: VOID;
+tvoid: VOID{System.out.println("Calcular multiplicación.");};
 
 funcdef: funchead '{' code '}'| funchead '{' code 'return' '(' IDENTIFIER ')' ';' '}';
 
@@ -29,13 +29,15 @@ funchead: tbas IDENTIFIER '(' typedef1 ')';
 
 typedef1: typedef2 | ;
 
-typedef2: tbas IDENTIFIER| typedef2 ',' tbas IDENTIFIER;
+typedef2: tbas IDENTIFIER | typedef3;
+
+typedef3:  ',' tbas IDENTIFIER | ;
 
 mainhead: tvoid 'Main' '(' typedef1 ')';
 
 code: ((sent)* sent)?;
 //DUDA SOBRE SI HAY RECURS IZQ O NO DETERMINISMO
-sent: asig ';'| funccall ';'| vardef ';';
+sent: asig ';' | funccall ';'| vardef ';';
 /*
 sent: vardef_sent ';';
 vardef_sent: asig | funccall | vardef;
