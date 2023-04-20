@@ -112,12 +112,6 @@ public interface gramaticaVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitTypedef2(gramaticaParser.Typedef2Context ctx);
 	/**
-	 * Visit a parse tree produced by {@link gramaticaParser#typedef3}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitTypedef3(gramaticaParser.Typedef3Context ctx);
-	/**
 	 * Visit a parse tree produced by {@link gramaticaParser#mainhead}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

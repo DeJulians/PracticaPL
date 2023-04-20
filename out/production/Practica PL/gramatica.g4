@@ -6,7 +6,7 @@ funlist: | funlist funcdef;
 sentlist:mainhead '{' code'}';
 //axioma: dcl;
 
-dcl: ctelist | varlist;
+dcl: ctelist | varlist{System.out.println("Calcular division ");};
 //ctelist: '#define' CONST_DEF_IDENTIFIER simpvalue | ctelist '#define' CONST_DEF_IDENTIFIER simpvalue;
 ctelist: '#define' CONST_DEF_IDENTIFIER simpvalue ctelist1;
 ctelist1: '#define' CONST_DEF_IDENTIFIER simpvalue ctelist1 | ;
@@ -29,9 +29,7 @@ funchead: tbas IDENTIFIER '(' typedef1 ')';
 
 typedef1: typedef2 | ;
 
-typedef2: tbas IDENTIFIER | typedef3;
-
-typedef3:  | ',' tbas IDENTIFIER typedef3;
+typedef2: tbas IDENTIFIER | typedef2 ',' tbas IDENTIFIER;
 
 mainhead: tvoid 'Main' '(' typedef1 ')';
 
