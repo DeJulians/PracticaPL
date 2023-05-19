@@ -1,41 +1,69 @@
 grammar gramatica;
 
 program: dcllist funlist sentlist;
-dcllist:  | dcl dcllist;
-funlist: | funlist funcdef;
-sentlist:mainhead '{' code'}';
-//axioma: dcl;
+dcllist:  | dcl dcllist1;
+dcllist1: dcl dcllist1 | ;
+funlist: | funcdef funlist1;
+funlist1: funcdef funlist1 | ;
+sentlist: mainhead '{' code'}';
 
-dcl: ctelist | varlist;
+dcl: ctedef | varlist;
+
 //ctelist: '#define' CONST_DEF_IDENTIFIER simpvalue | ctelist '#define' CONST_DEF_IDENTIFIER simpvalue;
-ctelist: '#define' CONST_DEF_IDENTIFIER simpvalue ctelist1;
-ctelist1: '#define' CONST_DEF_IDENTIFIER simpvalue ctelist1 | ;
+ctedef: '#define' CONST_DEF_IDENTIFIER simpvalue;
+//ctedef: '#define' CONST_DEF_IDENTIFIER simpvalue ctelist1;
+//ctelist1: '#define' CONST_DEF_IDENTIFIER simpvalue ctelist1 | ;
 
 simpvalue: NUMERIC_INTEGER_CONST| NUMERIC_REAL_CONST| STRING_CONST;
 
 //varlist: vardef ';' | varlist vardef ';'
 varlist: vardef ';' varlist1;
 varlist1: vardef ';' varlist1 | ;
-//puede haber recurs izq
-vardef: tbas IDENTIFIER| tbas IDENTIFIER '=' simpvalue| funcdef;
 
-tbas: TYPE | tvoid;
+vardef: tbas IDENTIFIER| tbas IDENTIFIER '=' simpvalue;
+//vardef: tbas IDENTIFIER| tbas IDENTIFIER '=' simpvalue| funcdef;
+
+tbas: TYPE | tvoid | struct;
+
+struct: 'struct' '{' varlist '}';
 
 tvoid: VOID;
 
-funcdef: funchead '{' code '}'| funchead '{' code 'return' '(' IDENTIFIER ')' ';' '}';
+funcdef: funchead '{' code '}';
+//funcdef: funchead '{' code '}'| funchead '{' code 'return' '(' IDENTIFIER ')' ';' '}';
 
-funchead: tbas IDENTIFIER '(' typedef1 ')';
+funchead: tbas IDENTIFIER '(' typedef ')';
 
-typedef1: typedef2 | ;
+typedef: typedef1 | ;
 
-typedef2: tbas IDENTIFIER | typedef2 ',' tbas IDENTIFIER;
+typedef1: tbas IDENTIFIER | typedef1 ',' tbas IDENTIFIER;
 
-mainhead: tvoid 'Main' '(' typedef1 ')';
+mainhead: tvoid 'Main' '(' typedef ')';
 
-code: ((sent)* sent)?;
-//DUDA SOBRE SI HAY RECURS IZQ O NO DETERMINISMO
-sent: asig ';' | funccall ';'| vardef ';';
+code: | sent code1;
+code1: sent code1 | ;
+
+sent: asig ';' | funccall ';'| vardef ';' | return ';' | if | while | dowhile | for;
+
+if: 'if' expcond '{' code '}' else;
+
+else: 'else' '{' code '}' | 'else' if | ;
+
+while: 'while' '(' expcond ')' '{' code '}';
+
+dowhile: 'do' '{' code '}' 'while' '('expcond ')' ';';
+
+for: 'for' '(' vardef ';' expcond ';' asig ')' '{' code '}' | 'for' '(' asig ';' expcond';' asig ')' '{' code '}';
+
+expcond: expcond oplog expcond | factorcond;
+
+oplog: '||' | '&';
+
+factorcond: exp opcomp exp | '(' expcond ')' | '!' factorcond;
+
+opcomp: '<' | '>' | '<=' |'>=' | '==';
+
+return: 'return' exp;
 /*
 sent: vardef_sent ';';
 vardef_sent: asig | funccall | vardef;
@@ -49,11 +77,12 @@ op: '+'| '-'| '*'| 'DIV'| 'MOD';
 
 factor: simpvalue | '(' exp ')'| funccall;
 
-funccall: IDENTIFIER subpparamlist| CONST_DEF_IDENTIFIER subpparamlist;
+funccall: IDENTIFIER subpparamlist| CONST_DEF_IDENTIFIER;
+//funccall: IDENTIFIER subpparamlist| CONST_DEF_IDENTIFIER subpparamlist;
 
 subpparamlist: '(' explist ')' | ;
 
-explist: exp| exp ',' explist;
+explist: exp | exp ',' explist;
 
 text: (id|const| int| real  string | com | aux | simb | resv | typ | voi);
 
@@ -80,4 +109,4 @@ NUMERIC_REAL_CONST: (NUMERIC_INTEGER_CONST'.'[0-9]+ | ('+'|'-')?'.'[0-9]+ | NUME
 STRING_CONST: ('\''([a-zA-Z0-9] | Aux_text)*'\'' | '"'(Aux_text | [a-zA-Z0-9])*'"');
 COMENTS: ('//' Aux_text+ '//' | '/*'(Aux_text | Aux_simb)+'*/');
 Aux_text:  ('{' | '(' | ')' | '}' | '\'' | '\\''"' | '\r' | '.' | '@' | '$' | '€' | '%' | '#');
-Aux_simb: (' '|'\n') -> skip;
+Aux_simb: (' '|'\n'|'\t') -> skip;

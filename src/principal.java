@@ -29,7 +29,7 @@ Comenzar el análisis llamando al axioma de la gramática
 Atención, sustituye "AxiomaDeLaGramatica" por el nombre del axioma de tu
 gramática
 */
-            anasint.dcl();
+            anasint.program();
         } catch (org.antlr.v4.runtime.RecognitionException e) {
 //Fallo al reconocer la entrada
             System.err.println("REC " + e.getMessage());

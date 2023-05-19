@@ -22,11 +22,23 @@ public interface gramaticaVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitDcllist(gramaticaParser.DcllistContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link gramaticaParser#dcllist1}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDcllist1(gramaticaParser.Dcllist1Context ctx);
+	/**
 	 * Visit a parse tree produced by {@link gramaticaParser#funlist}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitFunlist(gramaticaParser.FunlistContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link gramaticaParser#funlist1}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunlist1(gramaticaParser.Funlist1Context ctx);
 	/**
 	 * Visit a parse tree produced by {@link gramaticaParser#sentlist}.
 	 * @param ctx the parse tree
@@ -40,17 +52,11 @@ public interface gramaticaVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitDcl(gramaticaParser.DclContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link gramaticaParser#ctelist}.
+	 * Visit a parse tree produced by {@link gramaticaParser#ctedef}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitCtelist(gramaticaParser.CtelistContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link gramaticaParser#ctelist1}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitCtelist1(gramaticaParser.Ctelist1Context ctx);
+	T visitCtedef(gramaticaParser.CtedefContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link gramaticaParser#simpvalue}.
 	 * @param ctx the parse tree
@@ -82,6 +88,12 @@ public interface gramaticaVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitTbas(gramaticaParser.TbasContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link gramaticaParser#struct}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStruct(gramaticaParser.StructContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link gramaticaParser#tvoid}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -100,23 +112,17 @@ public interface gramaticaVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitFunchead(gramaticaParser.FuncheadContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link gramaticaParser#typedef}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTypedef(gramaticaParser.TypedefContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link gramaticaParser#typedef1}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitTypedef1(gramaticaParser.Typedef1Context ctx);
-	/**
-	 * Visit a parse tree produced by {@link gramaticaParser#typedef2}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitTypedef2(gramaticaParser.Typedef2Context ctx);
-	/**
-	 * Visit a parse tree produced by {@link gramaticaParser#typedef22}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitTypedef22(gramaticaParser.Typedef22Context ctx);
 	/**
 	 * Visit a parse tree produced by {@link gramaticaParser#mainhead}.
 	 * @param ctx the parse tree
@@ -130,11 +136,77 @@ public interface gramaticaVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitCode(gramaticaParser.CodeContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link gramaticaParser#code1}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCode1(gramaticaParser.Code1Context ctx);
+	/**
 	 * Visit a parse tree produced by {@link gramaticaParser#sent}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitSent(gramaticaParser.SentContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link gramaticaParser#if}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIf(gramaticaParser.IfContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link gramaticaParser#else}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitElse(gramaticaParser.ElseContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link gramaticaParser#while}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWhile(gramaticaParser.WhileContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link gramaticaParser#dowhile}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDowhile(gramaticaParser.DowhileContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link gramaticaParser#for}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFor(gramaticaParser.ForContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link gramaticaParser#expcond}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpcond(gramaticaParser.ExpcondContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link gramaticaParser#oplog}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOplog(gramaticaParser.OplogContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link gramaticaParser#factorcond}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFactorcond(gramaticaParser.FactorcondContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link gramaticaParser#opcomp}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOpcomp(gramaticaParser.OpcompContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link gramaticaParser#return}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitReturn(gramaticaParser.ReturnContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link gramaticaParser#asig}.
 	 * @param ctx the parse tree
