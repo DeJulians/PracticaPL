@@ -1,29 +1,54 @@
 grammar gramatica;
 
-program: dcllist funlist sentlist;
-dcllist:  | dcl dcllist1;
-dcllist1: dcl dcllist1 | ;
-funlist: | funcdef funlist1;
-funlist1: funcdef funlist1 | ;
+program: {  pagina += "<TITLE>PROGRAMA: codigo_prueba.c</TITLE>";
+            principal = "<DIV>\n"
+            + "<A  name=\"principal\">"
+            + "<H1>Programa Principal</H1>\n";
+          } dcllist funlist sentlist{    pagina += "</DIV></body></html>";
+                                        File f = new File("codigo_prueba.html");
+                                        try {
+                                            f.createNewFile();
+                                            FileWriter fw = new FileWriter(f);
+                                            BufferedWriter bw = new BufferedWriter(fw);
+
+                                            bw.write(pagina);
+                                            bw.close();
+                                        }catch(Exception e){System.out.println(e);}
+                                    };
+dcllist: dcl dcllist1
+       | ;
+dcllist1: dcl dcllist1
+        | ;
+funlist: funcdef funlist1{funciones += $funcdef.t + $funclist.t;}
+       | {funciones += "<HR/>";};
+funlist1 returns [String t]: funcdef funlist1{$t = funcdef.t + $funclist1.t;}
+                           | ;
 sentlist: mainhead '{' code'}';
 
-dcl: ctedef | varlist;
+dcl: ctedef {principal += $ctedef.t;}
+   | varlist{principal += $varlist.t;};
 
 //ctelist: '#define' CONST_DEF_IDENTIFIER simpvalue | ctelist '#define' CONST_DEF_IDENTIFIER simpvalue;
-ctedef: '#define' CONST_DEF_IDENTIFIER simpvalue;
+ctedef returns [String t]: '#define' CONST_DEF_IDENTIFIER simpvalue{$t = "define " + $CONST_DEF_IDENTIFIER.text + " " + $simpvalue.t;};
 //ctedef: '#define' CONST_DEF_IDENTIFIER simpvalue ctelist1;
 //ctelist1: '#define' CONST_DEF_IDENTIFIER simpvalue ctelist1 | ;
 
-simpvalue: NUMERIC_INTEGER_CONST| NUMERIC_REAL_CONST| STRING_CONST;
+simpvalue returns [String t]: NUMERIC_INTEGER_CONST {$t = $NUMERIC_INTEGER_CONST.text;}
+                            | NUMERIC_REAL_CONST {$t = $NUMERIC_REAL_CONST.text;}
+                            | STRING_CONST {$t = $STRING_CONST.text;};
 
 //varlist: vardef ';' | varlist vardef ';'
-varlist: vardef ';' varlist1;
-varlist1: vardef ';' varlist1 | ;
+varlist returns [String t]: vardef ';' varlist1;
+varlist1 returns [String t]: vardef ';' varlist1
+                           | ;
 
-vardef: tbas IDENTIFIER| tbas IDENTIFIER '=' simpvalue;
+vardef: tbas IDENTIFIER
+      | tbas IDENTIFIER '=' simpvalue;
 //vardef: tbas IDENTIFIER| tbas IDENTIFIER '=' simpvalue| funcdef;
 
-tbas: TYPE | tvoid | struct;
+tbas: TYPE
+    | tvoid
+    | struct;
 
 struct: 'struct' '{' varlist '}';
 
@@ -34,34 +59,56 @@ funcdef: funchead '{' code '}';
 
 funchead: tbas IDENTIFIER '(' typedef ')';
 
-typedef: typedef1 | ;
+typedef: typedef1
+       | ;
 
-typedef1: tbas IDENTIFIER | typedef1 ',' tbas IDENTIFIER;
+typedef1: tbas IDENTIFIER
+        | typedef1 ',' tbas IDENTIFIER;
 
 mainhead: tvoid 'Main' '(' typedef ')';
 
-code: | sent code1;
-code1: sent code1 | ;
+code: sent code1
+    | ;
+code1: sent code1
+     | ;
 
-sent: asig ';' | funccall ';'| vardef ';' | return ';' | if | while | dowhile | for;
+sent: asig ';'
+    | funccall ';'
+    | vardef ';'
+    | return ';'
+    | if
+    | while
+    | dowhile
+    | for;
 
 if: 'if' expcond '{' code '}' else;
 
-else: 'else' '{' code '}' | 'else' if | ;
+else: 'else' '{' code '}'
+    | 'else' if
+    | ;
 
 while: 'while' '(' expcond ')' '{' code '}';
 
 dowhile: 'do' '{' code '}' 'while' '('expcond ')' ';';
 
-for: 'for' '(' vardef ';' expcond ';' asig ')' '{' code '}' | 'for' '(' asig ';' expcond';' asig ')' '{' code '}';
+for: 'for' '(' vardef ';' expcond ';' asig ')' '{' code '}'
+   | 'for' '(' asig ';' expcond';' asig ')' '{' code '}';
 
-expcond: expcond oplog expcond | factorcond;
+expcond: expcond oplog expcond
+       | factorcond;
 
-oplog: '||' | '&';
+oplog: '||'
+     | '&';
 
-factorcond: exp opcomp exp | '(' expcond ')' | '!' factorcond;
+factorcond: exp opcomp exp
+          | '(' expcond ')'
+          | '!' factorcond;
 
-opcomp: '<' | '>' | '<=' |'>=' | '==';
+opcomp: '<'
+      | '>'
+      | '<='
+      |'>='
+      | '==';
 
 return: 'return' exp;
 /*
@@ -71,18 +118,28 @@ vardef_sent: asig | funccall | vardef;
 
 asig: IDENTIFIER '=' exp;
 
-exp: exp op exp| factor;
+exp: exp op exp
+   | factor;
 
-op: '+'| '-'| '*'| 'DIV'| 'MOD';
+op: '+'
+  | '-'
+  | '*'
+  | 'DIV'
+  | 'MOD';
 
-factor: simpvalue | '(' exp ')'| funccall;
+factor: simpvalue
+      | '(' exp ')'
+      | funccall;
 
-funccall: IDENTIFIER subpparamlist| CONST_DEF_IDENTIFIER;
+funccall: IDENTIFIER subpparamlist
+        | CONST_DEF_IDENTIFIER;
 //funccall: IDENTIFIER subpparamlist| CONST_DEF_IDENTIFIER subpparamlist;
 
-subpparamlist: '(' explist ')' | ;
+subpparamlist: '(' explist ')'
+             | ;
 
-explist: exp | exp ',' explist;
+explist: exp
+       | exp ',' explist;
 
 text: (id|const| int| real  string | com | aux | simb | resv | typ | voi);
 
