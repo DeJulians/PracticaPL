@@ -4,26 +4,26 @@ program: {  pagina += "<TITLE>PROGRAMA: codigo_prueba.c</TITLE>";
             principal = "<DIV>\n"
             + "<A  name=\"principal\">"
             + "<H1>Programa Principal</H1>\n";
-          } dcllist funlist sentlist{    pagina += "</DIV></body></html>";
-                                        File f = new File("codigo_prueba.html");
-                                        try {
-                                            f.createNewFile();
-                                            FileWriter fw = new FileWriter(f);
-                                            BufferedWriter bw = new BufferedWriter(fw);
+          } dcllist funlist{pagina += "<DIV>\n <A HREF=#main>Programa Principal</A>" + funciones + </DIV>;} sentlist{    pagina += "</DIV></body></html>";
+                                                                                                                        File f = new File("codigo_prueba.html");
+                                                                                                                        try {
+                                                                                                                            f.createNewFile();
+                                                                                                                            FileWriter fw = new FileWriter(f);
+                                                                                                                            BufferedWriter bw = new BufferedWriter(fw);
 
-                                            bw.write(pagina);
-                                            bw.close();
-                                        }catch(Exception e){System.out.println(e);}
-                                    };
+                                                                                                                            bw.write(pagina);
+                                                                                                                            bw.close();
+                                                                                                                        }catch(Exception e){System.out.println(e);}
+                                                                                                                    };
 dcllist: dcl dcllist1
        | ;
 dcllist1: dcl dcllist1
         | ;
-funlist: funcdef funlist1{funciones += $funcdef.t + $funclist.t;}
+funlist: funcdef funlist1{funciones += $funcdef.t + $funlist1.t;}
        | {funciones += "<HR/>";};
-funlist1 returns [String t]: funcdef funlist1{$t = funcdef.t + $funclist1.t;}
-                           | ;
-sentlist: mainhead '{' code'}';
+funlist1 returns [String t]: funcdef funlist1{$t = $funcdef.t + $funlist1.t;}
+                           | {funciones += "<HR/>"; $t = "";};
+sentlist: mainhead '{' code'}'{pagina += $mainhead.t + "{\n" + $code.t + "\n}\n";};
 
 dcl: ctedef {principal += $ctedef.t;}
    | varlist{principal += $varlist.t;};
@@ -38,108 +38,108 @@ simpvalue returns [String t]: NUMERIC_INTEGER_CONST {$t = $NUMERIC_INTEGER_CONST
                             | STRING_CONST {$t = $STRING_CONST.text;};
 
 //varlist: vardef ';' | varlist vardef ';'
-varlist returns [String t]: vardef ';' varlist1;
-varlist1 returns [String t]: vardef ';' varlist1
-                           | ;
+varlist returns [String t]: vardef ';' varlist1{$t = $vardef.t + "; " + $varlist1.t + " ";};
+varlist1 returns [String t]: vardef ';' varlist1{$t = $vardef.t + "; " + $varlist1.t + " ";}
+                           | {$t = "";};
 
-vardef: tbas IDENTIFIER
-      | tbas IDENTIFIER '=' simpvalue;
+vardef returns [String t]: tbas IDENTIFIER{$t = $tbas.t + " " + $IDENTIFIER.text;}
+      | tbas IDENTIFIER '=' simpvalue{$t = $tbas.t + " " + $IDENTIFIER.text + " = " + $simpvalue.t;};
 //vardef: tbas IDENTIFIER| tbas IDENTIFIER '=' simpvalue| funcdef;
 
-tbas: TYPE
-    | tvoid
-    | struct;
+tbas returns [String t]: TYPE{$t = $TYPE.text;}
+    | tvoid{$t = $tvoid.t;}
+    | struct{$t = $struct.t;};
 
-struct: 'struct' '{' varlist '}';
+struct returns [String t]: 'struct' '{' varlist '}'{$t = "struct {" + $varlist.t + "}"};
 
-tvoid: VOID;
+tvoid returns [String t]: VOID{$t = $VOID.text;};
 
-funcdef: funchead '{' code '}';
+funcdef returns [String t]: funchead {funciones += "<A HREF=#" + $funchead.t +">$funchead.t</A>\n"; } '{' code '}'{$t = "<A name=\"" + $funchead.t + "\">" + $funchead.t + "\n{\n" + $code.t + "\n}\n<HR/>";};
 //funcdef: funchead '{' code '}'| funchead '{' code 'return' '(' IDENTIFIER ')' ';' '}';
 
-funchead: tbas IDENTIFIER '(' typedef ')';
+funchead returns [String t]: tbas IDENTIFIER '(' typedef ')'{$t = $tbas.t + $IDENTIFIER.text + " (" + $typedef.t + ")";};
 
-typedef: typedef1
-       | ;
+typedef returns [String t]: typedef1{$t = $typedef1.t;}
+       | {$t = "";};
 
-typedef1: tbas IDENTIFIER
-        | typedef1 ',' tbas IDENTIFIER;
+typedef1 returns [String t]: tbas IDENTIFIER{$t = $tbas.t + $IDENTIFIER.text;}
+        | tbas IDENTIFIER ',' typedef1{$t = $tbas.t + $IDENTIFIER.text + ", " $typedef1.t};
 
-mainhead: tvoid 'Main' '(' typedef ')';
+mainhead returns [String t]: tvoid 'Main' '(' typedef ')'{$t = $tvoid.t + " Main(" + $typedef.t + ")";};
 
-code: sent code1
-    | ;
-code1: sent code1
-     | ;
+code returns [String t]: sent code1{$t = "<DIV style=\"text-indent: 2cm\">" + $sent.t + $code1.t + "</DIV>";}
+    | {$t = "";};
+code1 returns [String t]: sent code1{$t = $sent.t + $code1.t;}
+     | {$t = "";};
 
-sent: asig ';'
-    | funccall ';'
-    | vardef ';'
-    | return ';'
-    | if
-    | while
-    | dowhile
-    | for;
+sent returns [String t]: asig ';'{$t = $asig.t + ";";}
+    | funccall ';'{$t = $funccall.t + ";";}
+    | vardef ';'{$t = $vardef.t + ";";}
+    | return ';'{$t = $return.t + ";";}
+    | if{$t = $if.t;}
+    | while{$t = $while.t;}
+    | dowhile{$t = $dowhile.t;}
+    | for{$t = $for.t;};
 
-if: 'if' expcond '{' code '}' else;
+if returns [String t]: 'if' expcond '{' code '}' else{$t = "if " + $expcond.t + "{\n" + $code.t + "\n}\n" + $else.t;};
 
-else: 'else' '{' code '}'
-    | 'else' if
-    | ;
+else returns [String t]: 'else' '{' code '}'{$t = "else{\n" + $code.t + "\n}\n";}
+    | 'else' if{$t = "else " + $if.t;}
+    | {$t = "";};
 
-while: 'while' '(' expcond ')' '{' code '}';
+while returns [String t]: 'while' '(' expcond ')' '{' code '}'{$t = "while (" + $expcond.t + ") {\n" + $code.t + "\n}\n";};
 
-dowhile: 'do' '{' code '}' 'while' '('expcond ')' ';';
+dowhile returns [String t]: 'do' '{' code '}' 'while' '('expcond ')' ';'{$t = "do {\n" + $code.t + "\n}\n" + "while (" + $expcond.t + ");\n";};
 
-for: 'for' '(' vardef ';' expcond ';' asig ')' '{' code '}'
-   | 'for' '(' asig ';' expcond';' asig ')' '{' code '}';
+for returns [String t]: 'for' '(' vardef ';' expcond ';' asig ')' '{' code '}'{$t = "for (" + $vardef.t + ";" + $expcond.t + ";" + $asig.t + ") {\n" + $code.t + "\n}\n";}
+   | 'for' '(' asig ';' expcond';' asig ')' '{' code '}'{$t = "for (" + $asig.t + ";" + $expcond.t + ";" + $asig.t + ") {\n" + $code.t + "\n}\n";};
 
-expcond: expcond oplog expcond
-       | factorcond;
+expcond returns [String t]: expcond oplog expcond{$t = $expcond.t + " " + $oplog.t + " " + $expcond.t;}
+       | factorcond{$t = $factorcond.t;};
 
-oplog: '||'
-     | '&';
+oplog returns [String t]: '||'{$t = "||";}
+     | '&'{$t = "&";};
 
-factorcond: exp opcomp exp
-          | '(' expcond ')'
-          | '!' factorcond;
+factorcond returns [String t]: exp opcomp exp{$t = $exp.t + " " + $opcomp.t + " " + $exp.t;}
+          | '(' expcond ')'{$t = "(" + $expcond.t + ")";}
+          | '!' factorcond {$t = "!" + $factorcond.t;};
 
-opcomp: '<'
-      | '>'
-      | '<='
-      |'>='
-      | '==';
+opcomp returns [String t]: '<'{$t = "<";}
+      | '>'{$t = ">";}
+      | '<='{$t = "<=";}
+      |'>='{$t = ">=";}
+      | '=='{$t = "==";};
 
-return: 'return' exp;
+return returns [String t]: 'return' exp{$t = "return" + $exp.t;};
 /*
 sent: vardef_sent ';';
 vardef_sent: asig | funccall | vardef;
 */
 
-asig: IDENTIFIER '=' exp;
+asig returns [String t]: IDENTIFIER '=' exp {$t = $IDENTIFIER.text + " = " + $exp.t;};
 
-exp: exp op exp
-   | factor;
+exp returns [String t]: exp op exp{$t = $exp.t + " " + $op.t + " " + $exp.t;}
+   | factor{$t = $factor.t;};
 
-op: '+'
-  | '-'
-  | '*'
-  | 'DIV'
-  | 'MOD';
+op returns [String t]: '+'{$t = "+";}
+  | '-'{$t = "-";}
+  | '*'{$t = "*";}
+  | 'DIV'{$t = "DIV";}
+  | 'MOD'{$t = "MOD";};
 
-factor: simpvalue
-      | '(' exp ')'
-      | funccall;
+factor returns [String t]: simpvalue{$t = $simpvalue.t;}
+      | '(' exp ')'{$t = "(" + $exp.t + ")";}
+      | funccall{$t = $funccall.t;};
 
-funccall: IDENTIFIER subpparamlist
-        | CONST_DEF_IDENTIFIER;
+funccall returns [String t]: IDENTIFIER subparamlist{$t = $IDENTIFIER.text + " " + $subparamlist.t;}
+        | CONST_DEF_IDENTIFIER{$t = $CONST_DEF_IDENTIFIER.text;};
 //funccall: IDENTIFIER subpparamlist| CONST_DEF_IDENTIFIER subpparamlist;
 
-subpparamlist: '(' explist ')'
-             | ;
+subparamlist returns [String t]: '(' explist ')'{$t = "(" + $explist.t + ")";}
+             | {$t = "";};
 
-explist: exp
-       | exp ',' explist;
+explist returns [String t]: exp{$t = $exp.t;}
+       | exp ',' explist{$t = $exp.t + ", " + $explist.t;};
 
 text: (id|const| int| real  string | com | aux | simb | resv | typ | voi);
 

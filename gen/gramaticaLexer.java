@@ -19,6 +19,7 @@ public class gramaticaLexer extends Lexer {
 			+ "</head>\n"
 			+ "<body>\n";
 	public String funciones;
+	public String funcionesCod;
 	public String principal;
 	static { RuntimeMetaData.checkVersion("4.12.0", RuntimeMetaData.VERSION); }
 
