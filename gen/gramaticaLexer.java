@@ -10,17 +10,6 @@ import org.antlr.v4.runtime.misc.*;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast", "CheckReturnValue"})
 public class gramaticaLexer extends Lexer {
-	public String pagina = "<!DOCTYPE html>\n"
-			+ "<html>\n"
-			+ "<head>\n"
-			+ "<title>codigo_prueba.c</title>\n"
-			+ "<style>\n"
-			+ "</style>\n"
-			+ "</head>\n"
-			+ "<body>\n";
-	public String funciones;
-	public String funcionesCod;
-	public String principal;
 	static { RuntimeMetaData.checkVersion("4.12.0", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;

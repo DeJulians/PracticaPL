@@ -472,13 +472,13 @@ public class gramaticaBaseListener implements gramaticaListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSubpparamlist(gramaticaParser.SubpparamlistContext ctx) { }
+	@Override public void enterSubparamlist(gramaticaParser.SubparamlistContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitSubpparamlist(gramaticaParser.SubpparamlistContext ctx) { }
+	@Override public void exitSubparamlist(gramaticaParser.SubparamlistContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

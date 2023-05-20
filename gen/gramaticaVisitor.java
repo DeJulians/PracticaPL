@@ -238,11 +238,11 @@ public interface gramaticaVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitFunccall(gramaticaParser.FunccallContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link gramaticaParser#subpparamlist}.
+	 * Visit a parse tree produced by {@link gramaticaParser#subparamlist}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitSubpparamlist(gramaticaParser.SubpparamlistContext ctx);
+	T visitSubparamlist(gramaticaParser.SubparamlistContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link gramaticaParser#explist}.
 	 * @param ctx the parse tree

@@ -387,15 +387,15 @@ public interface gramaticaListener extends ParseTreeListener {
 	 */
 	void exitFunccall(gramaticaParser.FunccallContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link gramaticaParser#subpparamlist}.
+	 * Enter a parse tree produced by {@link gramaticaParser#subparamlist}.
 	 * @param ctx the parse tree
 	 */
-	void enterSubpparamlist(gramaticaParser.SubpparamlistContext ctx);
+	void enterSubparamlist(gramaticaParser.SubparamlistContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link gramaticaParser#subpparamlist}.
+	 * Exit a parse tree produced by {@link gramaticaParser#subparamlist}.
 	 * @param ctx the parse tree
 	 */
-	void exitSubpparamlist(gramaticaParser.SubpparamlistContext ctx);
+	void exitSubparamlist(gramaticaParser.SubparamlistContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link gramaticaParser#explist}.
 	 * @param ctx the parse tree

@@ -283,7 +283,7 @@ public class gramaticaBaseVisitor<T> extends AbstractParseTreeVisitor<T> impleme
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitSubpparamlist(gramaticaParser.SubpparamlistContext ctx) { return visitChildren(ctx); }
+	@Override public T visitSubparamlist(gramaticaParser.SubparamlistContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
