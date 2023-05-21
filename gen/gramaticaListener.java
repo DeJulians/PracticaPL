@@ -87,6 +87,16 @@ public interface gramaticaListener extends ParseTreeListener {
 	 */
 	void exitCtedef(gramaticaParser.CtedefContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link gramaticaParser#ctelist1}.
+	 * @param ctx the parse tree
+	 */
+	void enterCtelist1(gramaticaParser.Ctelist1Context ctx);
+	/**
+	 * Exit a parse tree produced by {@link gramaticaParser#ctelist1}.
+	 * @param ctx the parse tree
+	 */
+	void exitCtelist1(gramaticaParser.Ctelist1Context ctx);
+	/**
 	 * Enter a parse tree produced by {@link gramaticaParser#simpvalue}.
 	 * @param ctx the parse tree
 	 */

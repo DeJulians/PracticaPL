@@ -58,6 +58,12 @@ public interface gramaticaVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitCtedef(gramaticaParser.CtedefContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link gramaticaParser#ctelist1}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCtelist1(gramaticaParser.Ctelist1Context ctx);
+	/**
 	 * Visit a parse tree produced by {@link gramaticaParser#simpvalue}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

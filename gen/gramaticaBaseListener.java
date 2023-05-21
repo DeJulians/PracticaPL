@@ -112,6 +112,18 @@ public class gramaticaBaseListener implements gramaticaListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterCtelist1(gramaticaParser.Ctelist1Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCtelist1(gramaticaParser.Ctelist1Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterSimpvalue(gramaticaParser.SimpvalueContext ctx) { }
 	/**
 	 * {@inheritDoc}

@@ -31,9 +31,9 @@ dcl returns [String t]: ctedef {$t = $ctedef.t;}
    | varlist{$t = $varlist.t;};
 
 //ctelist: '#define' CONST_DEF_IDENTIFIER simpvalue | ctelist '#define' CONST_DEF_IDENTIFIER simpvalue;
-ctedef returns [String t]: '#define' CONST_DEF_IDENTIFIER simpvalue{$t = "<SPAN CLASS=\"palres\">#define</SPAN> " + "<SPAN CLASS=\"cte\">" + $CONST_DEF_IDENTIFIER.text + "</SPAN> " + $simpvalue.t + "\n";};
-//ctedef: '#define' CONST_DEF_IDENTIFIER simpvalue ctelist1;
-//ctelist1: '#define' CONST_DEF_IDENTIFIER simpvalue ctelist1 | ;
+//ctedef returns [String t]: '#define' CONST_DEF_IDENTIFIER simpvalue{$t = "<SPAN CLASS=\"palres\">#define</SPAN> " + "<SPAN CLASS=\"cte\">" + $CONST_DEF_IDENTIFIER.text + "</SPAN> " + $simpvalue.t + "\n";};
+ctedef returns [String t]: '#define' CONST_DEF_IDENTIFIER simpvalue ctelist1{$t = "<SPAN CLASS=\"palres\">#define</SPAN> " + "<SPAN CLASS=\"cte\">" + $CONST_DEF_IDENTIFIER.text + "</SPAN> " + $simpvalue.t + "\n" + $ctelist1.t;};
+ctelist1 returns [String t]: '#define' CONST_DEF_IDENTIFIER simpvalue ctelist1 {$t = "<SPAN CLASS=\"palres\">#define</SPAN> " + "<SPAN CLASS=\"cte\">" + $CONST_DEF_IDENTIFIER.text + "</SPAN> " + $simpvalue.t + "\n" + $ctelist1.t;} | ;
 
 simpvalue returns [String t]: NUMERIC_INTEGER_CONST {$t = "<SPAN CLASS=\"cte\">" + $NUMERIC_INTEGER_CONST.text + "</SPAN>";}
                             | NUMERIC_REAL_CONST {$t = "<SPAN CLASS=\"cte\">" + $NUMERIC_REAL_CONST.text + "</SPAN>";}
@@ -167,5 +167,5 @@ NUMERIC_INTEGER_CONST: ('+'|'-')?[0-9]+;
 NUMERIC_REAL_CONST: (NUMERIC_INTEGER_CONST'.'[0-9]+ | ('+'|'-')?'.'[0-9]+ | NUMERIC_INTEGER_CONST('.'[0-9]+)?('e'|'E')('+'|'-')?[0-9]+);
 STRING_CONST: ('\''([a-zA-Z0-9] | Aux_text)*'\'' | '"'(Aux_text | [a-zA-Z0-9])*'"');
 COMENTS: ('//' Aux_text+ '//' | '/*'(Aux_text | Aux_simb)+'*/');
-Aux_text:  ('{' | '(' | ')' | '}' | '\'' | '\\''"' | '\r' | '.' | '@' | '$' | '€' | '%' | '#');
-Aux_simb: (' '|'\n'|'\t'|'\r') -> skip;
+Aux_text:  ('{' | '(' | ')' | '}' | '\'' | '\\' | '"' | '.' | '@' | '$' | '€' | '%' | '#');
+Aux_simb: (' '|'\n'|'\r') -> skip;
