@@ -12,11 +12,11 @@ import java.io.*;
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast", "CheckReturnValue"})
 public class gramaticaParser extends Parser {
 
-	public String pagina = "<!DOCTYPE html>\n"+ "<HTML>\n"+ "<HEAD>\n"+ "<TITLE>codigo_prueba.c</TITLE>\n"+ "</HEAD>\n"+ "<BODY>\n"+ "<A name=\"programa\"><H1>Programa: codigo_prueba.c<H1></A>\n"+ "<DIV>";
-	public String funciones = "<H2>Funciones:</H2>\n"+ "<DIV>"+ "<UL>";
+	public String pagina = "<!DOCTYPE html>\n"+ "<HTML>\n"+ "<HEAD>\n"+ "<TITLE>codigo_prueba.c</TITLE>\n"+ "</HEAD>\n"+ "<BODY>\n"+ "<A name=\"programa\"><H1>Programa: codigo_prueba.c<H1></A>\n"+ "<DIV>\n";
+	public String funciones = "<H2>Funciones:</H2>\n"+ "<UL>";
 	public String funcionesCod = "";
-	public String principal = "</DIV>\n"+ "<DIV>\n"+ "<A name=\"principal\"><H2>Programa Principal</H2></A>";
-
+	public String principal = "\n"+ "<A name=\"principal\"><H2>Programa Principal</H2></A>";
+	public int contador = 0;
 
 	static { RuntimeMetaData.checkVersion("4.12.0", RuntimeMetaData.VERSION); }
 
@@ -177,7 +177,7 @@ public class gramaticaParser extends Parser {
 			          pagina += funciones;
 			          pagina += funcionesCod;
 			          pagina += principal;
-			          pagina += "</DIV></DIV></BODY></HTML>";
+			          pagina += "</DIV></BODY></HTML>";
 			          File f = new File("codigo_prueba.html");
 			          try {
 			              f.createNewFile();
@@ -449,7 +449,7 @@ public class gramaticaParser extends Parser {
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				((Funlist1Context)_localctx).t =  "</UL>\n<HR/>\n";
+				((Funlist1Context)_localctx).t =  "</UL>\n" + "<HR/>\n";
 				}
 				break;
 			}
@@ -509,7 +509,7 @@ public class gramaticaParser extends Parser {
 			((SentlistContext)_localctx).code = code();
 			setState(144);
 			match(T__1);
-			((SentlistContext)_localctx).t =  ((SentlistContext)_localctx).mainhead.t + "{\n" + ((SentlistContext)_localctx).code.t + "\n}\n" + "<A HREF=\"#principal\">Inicio del Programa Principal</A> <A HREF=\"#programa\">inicio del Programa</A>";
+			((SentlistContext)_localctx).t =  ((SentlistContext)_localctx).mainhead.t + " {\n" + ((SentlistContext)_localctx).code.t + "\n}\n" + "<A HREF=\"#principal\">Inicio del Programa Principal</A> <A HREF=\"#programa\">inicio del Programa</A>";
 			}
 		}
 		catch (RecognitionException re) {
@@ -1214,14 +1214,14 @@ public class gramaticaParser extends Parser {
 			{
 			setState(222);
 			((FuncdefContext)_localctx).funchead = funchead();
-			funciones += "<A HREF=\"#FUNCIONES:" + ((FuncdefContext)_localctx).funchead.t + "\">" + "<LI>" + ((FuncdefContext)_localctx).funchead.t + "</LI>" + "</A>\n";
+			funciones += "<A HREF=\"#FUNCIONES:funcion" + contador + "\">" + "<LI>" + ((FuncdefContext)_localctx).funchead.t + "</LI>" + "\n";
 			setState(224);
 			match(T__0);
 			setState(225);
 			((FuncdefContext)_localctx).code = code();
 			setState(226);
 			match(T__1);
-			((FuncdefContext)_localctx).t =  "<A name=\"FUNCIONES:" + ((FuncdefContext)_localctx).funchead.t + "\">" + ((FuncdefContext)_localctx).funchead.t + "\n{\n" + ((FuncdefContext)_localctx).code.t + "\n}\n <A HREF=\"#" + ((FuncdefContext)_localctx).funchead.t + "\">Iicio de la funcion</A> <A HREF=\"#principal\">Programa Principal</A>\n<HR/>\n";
+			((FuncdefContext)_localctx).t =  "<A name=\"FUNCIONES:funcion" + contador + "\">" + ((FuncdefContext)_localctx).funchead.t + "\n{\n" + ((FuncdefContext)_localctx).code.t + "\n}\n <A HREF=\"#FUNCIONES:funcion" + contador + "\">Iicio de la funcion</A> <A HREF=\"#principal\">Programa Principal</A>\n<HR/>\n"; contador++;
 			}
 		}
 		catch (RecognitionException re) {
@@ -1729,7 +1729,7 @@ public class gramaticaParser extends Parser {
 				((SentContext)_localctx).funccall = funccall();
 				setState(280);
 				match(T__3);
-				((SentContext)_localctx).t =  ((SentContext)_localctx).funccall.t + ";";
+				((SentContext)_localctx).t =  ((SentContext)_localctx).funccall.t + ";\n";
 				}
 				break;
 			case 3:
@@ -1739,7 +1739,7 @@ public class gramaticaParser extends Parser {
 				((SentContext)_localctx).vardef = vardef();
 				setState(284);
 				match(T__3);
-				((SentContext)_localctx).t =  ((SentContext)_localctx).vardef.t + ";";
+				((SentContext)_localctx).t =  ((SentContext)_localctx).vardef.t + ";\n";
 				}
 				break;
 			case 4:
@@ -1749,7 +1749,7 @@ public class gramaticaParser extends Parser {
 				((SentContext)_localctx).returna = returna();
 				setState(288);
 				match(T__3);
-				((SentContext)_localctx).t =  ((SentContext)_localctx).returna.t + ";";
+				((SentContext)_localctx).t =  ((SentContext)_localctx).returna.t + ";\n";
 				}
 				break;
 			case 5:
@@ -1849,7 +1849,7 @@ public class gramaticaParser extends Parser {
 			match(T__1);
 			setState(310);
 			((IfaContext)_localctx).elsea = elsea();
-			((IfaContext)_localctx).t =  "<SPAN CLASS=\"palres\">if</SPAN> " + ((IfaContext)_localctx).expcond.t + "{\n" + ((IfaContext)_localctx).code.t + "\n}\n" + ((IfaContext)_localctx).elsea.t;
+			((IfaContext)_localctx).t =  "<SPAN CLASS=\"palres\">if</SPAN> " + ((IfaContext)_localctx).expcond.t + "{\n" + ((IfaContext)_localctx).code.t + "\n" + "}\n" + ((IfaContext)_localctx).elsea.t;
 			}
 		}
 		catch (RecognitionException re) {
@@ -2563,7 +2563,7 @@ public class gramaticaParser extends Parser {
 			match(T__23);
 			setState(423);
 			((ReturnaContext)_localctx).exp = exp(0);
-			((ReturnaContext)_localctx).t =  "<SPAN CLASS=\"palres\">\return</SPAN>" + ((ReturnaContext)_localctx).exp.t;
+			((ReturnaContext)_localctx).t =  "<SPAN CLASS=\"palres\">return</SPAN>" + ((ReturnaContext)_localctx).exp.t;
 			}
 		}
 		catch (RecognitionException re) {

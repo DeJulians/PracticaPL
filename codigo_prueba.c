@@ -12,6 +12,9 @@ string codificar_cadena(string cadena, integer desplazamiento){
 
 void save(string nombre){
     fopen("file.txt", "w");
+    for (int i = 0; 1<1; i=1+i){
+    algo(VASO);
+    }
     printf(nombre);
 }
 
