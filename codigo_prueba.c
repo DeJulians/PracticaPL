@@ -1,7 +1,7 @@
 #define FECHA 2023
 #define CODIGO 10
 integer n_alumnos;
-float valor_real;
+float __valor_real;
 string nombre = "alumno1";
 
 string codificar_cadena(string cadena, integer desplazamiento){
@@ -12,9 +12,10 @@ string codificar_cadena(string cadena, integer desplazamiento){
 
 void save(string nombre){
     fopen("file.txt", "w");
-    for (int i = 0; 1<1; i=1+i){
-    algo(VASO);
-    }
+	do{
+	algo(PRUEBA);
+	}
+	while(i<=0);
     printf(nombre);
 }
 

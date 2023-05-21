@@ -161,4 +161,4 @@ NUMERIC_REAL_CONST: (NUMERIC_INTEGER_CONST'.'[0-9]+ | ('+'|'-')?'.'[0-9]+ | NUME
 STRING_CONST: ('\''([a-zA-Z0-9] | Aux_text)*'\'' | '"'(Aux_text | [a-zA-Z0-9])*'"');
 COMENTS: ('//' Aux_text+ '//' | '/*'(Aux_text | Aux_simb)+'*/');
 Aux_text:  ('{' | '(' | ')' | '}' | '\'' | '\\' | '"' | '.' | '@' | '$' | '€' | '%' | '#');
-Aux_simb: (' '|'\n'|'\r'|'\t') -> skip;
+Aux_simb: (' '|'\n'|'\r') -> skip;
