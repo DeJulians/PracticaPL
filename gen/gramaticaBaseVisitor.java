@@ -178,21 +178,21 @@ public class gramaticaBaseVisitor<T> extends AbstractParseTreeVisitor<T> impleme
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitIf(gramaticaParser.IfContext ctx) { return visitChildren(ctx); }
+	@Override public T visitIfa(gramaticaParser.IfaContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitElse(gramaticaParser.ElseContext ctx) { return visitChildren(ctx); }
+	@Override public T visitElsea(gramaticaParser.ElseaContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitWhile(gramaticaParser.WhileContext ctx) { return visitChildren(ctx); }
+	@Override public T visitWhilea(gramaticaParser.WhileaContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -206,7 +206,7 @@ public class gramaticaBaseVisitor<T> extends AbstractParseTreeVisitor<T> impleme
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitFor(gramaticaParser.ForContext ctx) { return visitChildren(ctx); }
+	@Override public T visitFora(gramaticaParser.ForaContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -241,7 +241,7 @@ public class gramaticaBaseVisitor<T> extends AbstractParseTreeVisitor<T> impleme
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitReturn(gramaticaParser.ReturnContext ctx) { return visitChildren(ctx); }
+	@Override public T visitReturna(gramaticaParser.ReturnaContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

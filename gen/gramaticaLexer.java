@@ -7,6 +7,7 @@ import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.misc.*;
+import java.io.*;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast", "CheckReturnValue"})
 public class gramaticaLexer extends Lexer {
@@ -197,7 +198,7 @@ public class gramaticaLexer extends Lexer {
 		";\u001e=\u001f? A!C\"E#G$I%K&M\'O(\u0001\u0000\f\u0001\u0000AZ\u0003\u0000"+
 		"09AZ__\u0001\u0000az\u0003\u000009__az\u0002\u0000++--\u0001\u000009\u0002"+
 		"\u0000EEee\u0003\u000009AZaz\u0003\u0000\'){{}}\u0004\u0000\r\r$$..@@"+
-		"\u0002\u0000##%%\u0002\u0000\t\n  \u022e\u0000\u0001\u0001\u0000\u0000"+
+		"\u0002\u0000##%%\u0003\u0000\t\n\r\r  \u022e\u0000\u0001\u0001\u0000\u0000"+
 		"\u0000\u0000\u0003\u0001\u0000\u0000\u0000\u0000\u0005\u0001\u0000\u0000"+
 		"\u0000\u0000\u0007\u0001\u0000\u0000\u0000\u0000\t\u0001\u0000\u0000\u0000"+
 		"\u0000\u000b\u0001\u0000\u0000\u0000\u0000\r\u0001\u0000\u0000\u0000\u0000"+

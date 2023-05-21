@@ -292,37 +292,37 @@ public class gramaticaBaseListener implements gramaticaListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterIf(gramaticaParser.IfContext ctx) { }
+	@Override public void enterIfa(gramaticaParser.IfaContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitIf(gramaticaParser.IfContext ctx) { }
+	@Override public void exitIfa(gramaticaParser.IfaContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterElse(gramaticaParser.ElseContext ctx) { }
+	@Override public void enterElsea(gramaticaParser.ElseaContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitElse(gramaticaParser.ElseContext ctx) { }
+	@Override public void exitElsea(gramaticaParser.ElseaContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterWhile(gramaticaParser.WhileContext ctx) { }
+	@Override public void enterWhilea(gramaticaParser.WhileaContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitWhile(gramaticaParser.WhileContext ctx) { }
+	@Override public void exitWhilea(gramaticaParser.WhileaContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -340,13 +340,13 @@ public class gramaticaBaseListener implements gramaticaListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFor(gramaticaParser.ForContext ctx) { }
+	@Override public void enterFora(gramaticaParser.ForaContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFor(gramaticaParser.ForContext ctx) { }
+	@Override public void exitFora(gramaticaParser.ForaContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -400,13 +400,13 @@ public class gramaticaBaseListener implements gramaticaListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterReturn(gramaticaParser.ReturnContext ctx) { }
+	@Override public void enterReturna(gramaticaParser.ReturnaContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitReturn(gramaticaParser.ReturnContext ctx) { }
+	@Override public void exitReturna(gramaticaParser.ReturnaContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

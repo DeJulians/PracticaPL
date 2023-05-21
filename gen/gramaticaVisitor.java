@@ -148,23 +148,23 @@ public interface gramaticaVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSent(gramaticaParser.SentContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link gramaticaParser#if}.
+	 * Visit a parse tree produced by {@link gramaticaParser#ifa}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitIf(gramaticaParser.IfContext ctx);
+	T visitIfa(gramaticaParser.IfaContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link gramaticaParser#else}.
+	 * Visit a parse tree produced by {@link gramaticaParser#elsea}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitElse(gramaticaParser.ElseContext ctx);
+	T visitElsea(gramaticaParser.ElseaContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link gramaticaParser#while}.
+	 * Visit a parse tree produced by {@link gramaticaParser#whilea}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitWhile(gramaticaParser.WhileContext ctx);
+	T visitWhilea(gramaticaParser.WhileaContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link gramaticaParser#dowhile}.
 	 * @param ctx the parse tree
@@ -172,11 +172,11 @@ public interface gramaticaVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitDowhile(gramaticaParser.DowhileContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link gramaticaParser#for}.
+	 * Visit a parse tree produced by {@link gramaticaParser#fora}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitFor(gramaticaParser.ForContext ctx);
+	T visitFora(gramaticaParser.ForaContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link gramaticaParser#expcond}.
 	 * @param ctx the parse tree
@@ -202,11 +202,11 @@ public interface gramaticaVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitOpcomp(gramaticaParser.OpcompContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link gramaticaParser#return}.
+	 * Visit a parse tree produced by {@link gramaticaParser#returna}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitReturn(gramaticaParser.ReturnContext ctx);
+	T visitReturna(gramaticaParser.ReturnaContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link gramaticaParser#asig}.
 	 * @param ctx the parse tree

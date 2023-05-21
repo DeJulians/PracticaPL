@@ -237,35 +237,35 @@ public interface gramaticaListener extends ParseTreeListener {
 	 */
 	void exitSent(gramaticaParser.SentContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link gramaticaParser#if}.
+	 * Enter a parse tree produced by {@link gramaticaParser#ifa}.
 	 * @param ctx the parse tree
 	 */
-	void enterIf(gramaticaParser.IfContext ctx);
+	void enterIfa(gramaticaParser.IfaContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link gramaticaParser#if}.
+	 * Exit a parse tree produced by {@link gramaticaParser#ifa}.
 	 * @param ctx the parse tree
 	 */
-	void exitIf(gramaticaParser.IfContext ctx);
+	void exitIfa(gramaticaParser.IfaContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link gramaticaParser#else}.
+	 * Enter a parse tree produced by {@link gramaticaParser#elsea}.
 	 * @param ctx the parse tree
 	 */
-	void enterElse(gramaticaParser.ElseContext ctx);
+	void enterElsea(gramaticaParser.ElseaContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link gramaticaParser#else}.
+	 * Exit a parse tree produced by {@link gramaticaParser#elsea}.
 	 * @param ctx the parse tree
 	 */
-	void exitElse(gramaticaParser.ElseContext ctx);
+	void exitElsea(gramaticaParser.ElseaContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link gramaticaParser#while}.
+	 * Enter a parse tree produced by {@link gramaticaParser#whilea}.
 	 * @param ctx the parse tree
 	 */
-	void enterWhile(gramaticaParser.WhileContext ctx);
+	void enterWhilea(gramaticaParser.WhileaContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link gramaticaParser#while}.
+	 * Exit a parse tree produced by {@link gramaticaParser#whilea}.
 	 * @param ctx the parse tree
 	 */
-	void exitWhile(gramaticaParser.WhileContext ctx);
+	void exitWhilea(gramaticaParser.WhileaContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link gramaticaParser#dowhile}.
 	 * @param ctx the parse tree
@@ -277,15 +277,15 @@ public interface gramaticaListener extends ParseTreeListener {
 	 */
 	void exitDowhile(gramaticaParser.DowhileContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link gramaticaParser#for}.
+	 * Enter a parse tree produced by {@link gramaticaParser#fora}.
 	 * @param ctx the parse tree
 	 */
-	void enterFor(gramaticaParser.ForContext ctx);
+	void enterFora(gramaticaParser.ForaContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link gramaticaParser#for}.
+	 * Exit a parse tree produced by {@link gramaticaParser#fora}.
 	 * @param ctx the parse tree
 	 */
-	void exitFor(gramaticaParser.ForContext ctx);
+	void exitFora(gramaticaParser.ForaContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link gramaticaParser#expcond}.
 	 * @param ctx the parse tree
@@ -327,15 +327,15 @@ public interface gramaticaListener extends ParseTreeListener {
 	 */
 	void exitOpcomp(gramaticaParser.OpcompContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link gramaticaParser#return}.
+	 * Enter a parse tree produced by {@link gramaticaParser#returna}.
 	 * @param ctx the parse tree
 	 */
-	void enterReturn(gramaticaParser.ReturnContext ctx);
+	void enterReturna(gramaticaParser.ReturnaContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link gramaticaParser#return}.
+	 * Exit a parse tree produced by {@link gramaticaParser#returna}.
 	 * @param ctx the parse tree
 	 */
-	void exitReturn(gramaticaParser.ReturnContext ctx);
+	void exitReturna(gramaticaParser.ReturnaContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link gramaticaParser#asig}.
 	 * @param ctx the parse tree

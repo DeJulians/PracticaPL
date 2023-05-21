@@ -1,21 +1,6 @@
 grammar gramatica;
 
-program: {String pagina = "<!DOCTYPE html>\n"
-          + "<HTML>\n"
-          + "<HEAD>\n"
-          + "<TITLE>codigo_prueba.c</TITLE>\n"
-          + "</HEAD>\n"
-          + "<BODY>\n"
-          + "<A name=\"programa\"><H1>Programa: codigo_prueba.c<H1></A>\n"
-          + "<DIV>";
-          String funciones = "<H2>Funciones:</H2>\n"
-          + "<DIV>"
-          + "<UL>";
-          String funcionescod = "";
-          String principal = "</DIV>\n"
-          + "<DIV>\n"
-          + "<A name=\"principal\"><H2>Programa Principal</H2></A>";}
-          dcllist{principal += $dcllist.t;}
+program:  dcllist{principal += $dcllist.t;}
           funlist{funcionesCod += $funlist.t;}
           sentlist{principal += $sentlist.t;
           pagina += funciones;
@@ -92,23 +77,23 @@ code1 returns [String t]: sent code1{$t = $sent.t + $code1.t;}
 sent returns [String t]: asig ';'{$t = $asig.t + ";\n";}
     | funccall ';'{$t = $funccall.t + ";";}
     | vardef ';'{$t = $vardef.t + ";";}
-    | return ';'{$t = $return.t + ";";}
-    | if{$t = $if.t;}
-    | while{$t = $while.t;}
+    | returna ';'{$t = $returna.t + ";";}
+    | ifa{$t = $ifa.t;}
+    | whilea{$t = $whilea.t;}
     | dowhile{$t = $dowhile.t;}
-    | for{$t = $for.t;};
+    | fora{$t = $fora.t;};
 
-if returns [String t]: 'if' expcond '{' code '}' else{$t = "<SPAN CLASS=\"palres\">if " + "</SPAN>" + $expcond.t + "{\n" + $code.t + "\n}\n" + $else.t;};
+ifa returns [String t]: 'if' expcond '{' code '}' elsea{$t = "<SPAN CLASS=\"palres\">if</SPAN> " + $expcond.t + "{\n" + $code.t + "\n}\n" + $elsea.t;};
 
-else returns [String t]: 'else' '{' code '}'{$t = "<SPAN CLASS=\"palres\">else</SPAN>{\n" + $code.t + "\n}\n";}
-    | 'else' if{$t = "<SPAN CLASS="palres">else " + "</SPAN>" + $if.t;}
+elsea returns [String t]: 'else' '{' code '}'{$t = "<SPAN CLASS=\"palres\">else</SPAN>{\n" + $code.t + "\n}\n";}
+    | 'else' ifa{$t = "<SPAN CLASS=\"palres\">else " + "</SPAN>" + $ifa.t;}
     | {$t = "";};
 
-while returns [String t]: 'while' '(' expcond ')' '{' code '}'{$t = "<SPAN CLASS=\"palres\">while</SPAN> (" + $expcond.t + ") {\n" + $code.t + "\n}\n";};
+whilea returns [String t]: 'while' '(' expcond ')' '{' code '}'{$t = "<SPAN CLASS=\"palres\">while</SPAN> (" + $expcond.t + ") {\n" + $code.t + "\n}\n";};
 
 dowhile returns [String t]: 'do' '{' code '}' 'while' '('expcond ')' ';'{$t = "<SPAN CLASS=\"palres\">do</SPAN> {\n" + $code.t + "\n}\n" + "while (" + $expcond.t + ");\n";};
 
-for returns [String t]: 'for' '(' vardef ';' expcond ';' asig ')' '{' code '}'{$t = "<SPAN CLASS=\"palres\">for</SPAN> (" + $vardef.t + ";" + $expcond.t + ";" + $asig.t + ") {\n" + $code.t + "\n}\n";}
+fora returns [String t]: 'for' '(' vardef ';' expcond ';' asig ')' '{' code '}'{$t = "<SPAN CLASS=\"palres\">for</SPAN> (" + $vardef.t + ";" + $expcond.t + ";" + $asig.t + ") {\n" + $code.t + "\n}\n";}
    | 'for' '(' asig ';' expcond';' asig ')' '{' code '}'{$t = "<SPAN CLASS=\"palres\">for</SPAN> (" + $asig.t + ";" + $expcond.t + ";" + $asig.t + ") {\n" + $code.t + "\n}\n";};
 
 expcond returns [String t]: expcond oplog expcond{$t = $expcond.t + " " + $oplog.t + " " + $expcond.t;}
@@ -127,7 +112,7 @@ opcomp returns [String t]: '<'{$t = "<";}
       |'>='{$t = ">=";}
       | '=='{$t = "==";};
 
-return returns [String t]: 'return' exp{$t = "<SPAN CLASS=\"palres\">return</SPAN>" + $exp.t;};
+returna returns [String t]: 'return' exp{$t = "<SPAN CLASS=\"palres\">\return</SPAN>" + $exp.t;};
 /*
 sent: vardef_sent ';';
 vardef_sent: asig | funccall | vardef;
@@ -183,4 +168,4 @@ NUMERIC_REAL_CONST: (NUMERIC_INTEGER_CONST'.'[0-9]+ | ('+'|'-')?'.'[0-9]+ | NUME
 STRING_CONST: ('\''([a-zA-Z0-9] | Aux_text)*'\'' | '"'(Aux_text | [a-zA-Z0-9])*'"');
 COMENTS: ('//' Aux_text+ '//' | '/*'(Aux_text | Aux_simb)+'*/');
 Aux_text:  ('{' | '(' | ')' | '}' | '\'' | '\\''"' | '\r' | '.' | '@' | '$' | '€' | '%' | '#');
-Aux_simb: (' '|'\n'|'\t') -> skip;
+Aux_simb: (' '|'\n'|'\t'|'\r') -> skip;
