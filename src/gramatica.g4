@@ -18,33 +18,33 @@ program:  dcllist{principal += $dcllist.t;}
           }catch(Exception e){System.out.println(e);}
         };
 dcllist returns [String t]: dcl dcllist1{$t = $dcl.t + " " + $dcllist1.t;}
-       | {$t = "\n";};
+       | {$t = "<br>";};
 dcllist1 returns [String t]: dcl dcllist1{$t = $dcl.t + $dcllist1.t;}
-        | {$t = "\n";};
+        | {$t = "<br>";};
 funlist returns [String t]: funcdef funlist1{$t = $funcdef.t + $funlist1.t;}
-       | {$t = "<HR/>\n";};
+       | {$t = "<HR/><br>";};
 funlist1 returns [String t]: funcdef funlist1{$t = $funcdef.t + $funlist1.t;}
-                           | {$t = "</UL>\n" + "<HR/>\n";};
-sentlist returns [String t]: mainhead '{' code'}'{$t = $mainhead.t + " {\n" + $code.t + "\n}\n" + "<A HREF=\"#principal\">Inicio del Programa Principal</A> <A HREF=\"#programa\">inicio del Programa</A>";};
+                           | {$t = "</UL><br>" + "<HR/><br>";};
+sentlist returns [String t]: mainhead '{' code'}'{$t = $mainhead.t + " {<br>" + $code.t + "<br>}<br>" + "<A HREF=\"#principal\">Inicio del Programa Principal</A> <A HREF=\"#programa\">inicio del Programa</A>";};
 
 dcl returns [String t]: ctedef {$t = $ctedef.t;}
    | varlist{$t = $varlist.t;};
 
 ctedef returns [String t]: '#define' CONST_DEF_IDENTIFIER simpvalue ctelist1{$t = "<SPAN CLASS=\"palres\">#define</SPAN> " + "<SPAN CLASS=\"cte\">" + $CONST_DEF_IDENTIFIER.text + "</SPAN> " + $simpvalue.t + "\n" + $ctelist1.t + "\n";};
 ctelist1 returns [String t]: '#define' CONST_DEF_IDENTIFIER simpvalue ctelist1 {$t = "<SPAN CLASS=\"palres\">#define</SPAN> " + "<SPAN CLASS=\"cte\">" + $CONST_DEF_IDENTIFIER.text + "</SPAN> " + $simpvalue.t + "\n" + $ctelist1.t + "\n";}
-        | {$t = "\n";};
+        | {$t = "<br>";};
 
 simpvalue returns [String t]: NUMERIC_INTEGER_CONST {$t = "<SPAN CLASS=\"cte\">" + $NUMERIC_INTEGER_CONST.text + "</SPAN>";}
                             | NUMERIC_REAL_CONST {$t = "<SPAN CLASS=\"cte\">" + $NUMERIC_REAL_CONST.text + "</SPAN>";}
                             | STRING_CONST {$t = "<SPAN CLASS=\"cte\">" + $STRING_CONST.text + "</SPAN>";};
 
 
-varlist returns [String t]: vardef ';' varlist1{$t = $vardef.t + "; " + $varlist1.t + "\n";};
-varlist1 returns [String t]: vardef ';' varlist1{$t = $vardef.t + "; " + $varlist1.t + "\n";}
-                           | {$t = "\n";};
+varlist returns [String t]: vardef ';' varlist1{$t = $vardef.t + "; " + $varlist1.t + "<br>";};
+varlist1 returns [String t]: vardef ';' varlist1{$t = $vardef.t + "; " + $varlist1.t + "<br>";}
+                           | {$t = "<br>";};
 
-vardef returns [String t]: tbas IDENTIFIER{$t = $tbas.t + " <SPAN CLASS=\"ident\">" + $IDENTIFIER.text + "</SPAN>\n";}
-      | tbas IDENTIFIER '=' simpvalue{$t = $tbas.t + " <SPAN CLASS=\"ident\">" + $IDENTIFIER.text + "</SPAN> = " + $simpvalue.t + "\n";};
+vardef returns [String t]: tbas IDENTIFIER{$t = $tbas.t + " <SPAN CLASS=\"ident\">" + $IDENTIFIER.text + "</SPAN><br>";}
+      | tbas IDENTIFIER '=' simpvalue{$t = $tbas.t + " <SPAN CLASS=\"ident\">" + $IDENTIFIER.text + "</SPAN> = " + $simpvalue.t + "<br>";};
 
 tbas returns [String t]: TYPE{$t = "<SPAN CLASS=\"palres\">" + $TYPE.text + "</SPAN>";}
     | tvoid{$t = $tvoid.t;}
@@ -54,12 +54,12 @@ struct returns [String t]: 'struct' '{' varlist '}'{$t = "<SPAN CLASS=\"palres\"
 
 tvoid returns [String t]: VOID{$t = " <SPAN CLASS=\"palres\">" + $VOID.text + "</SPAN>";};
 
-funcdef returns [String t]: funchead {funciones += "<A HREF=\"#FUNCIONES:funcion" + contador + "\">" + "<LI>" + $funchead.t + "</LI>" + "\n";} '{' code '}'{$t = "<A name=\"FUNCIONES:funcion" + contador + "\">" + $funchead.t + "\n{\n" + $code.t + "\n}\n <A HREF=\"#FUNCIONES:funcion" + contador + "\">Iicio de la funcion</A> <A HREF=\"#principal\">Programa Principal</A>\n<HR/>\n"; contador++;};
+funcdef returns [String t]: funchead {funciones += "<A HREF=\"#FUNCIONES:funcion" + contador + "\">" + "<LI>" + $funchead.t + "</LI>" + "<br>";} '{' code '}'{$t = "<A name=\"FUNCIONES:funcion" + contador + "\">" + $funchead.t + "<br>{<br>" + $code.t + "<br>}<br> <A HREF=\"#FUNCIONES:funcion" + contador + "\">Iicio de la funcion</A> <A HREF=\"#principal\">Programa Principal</A><br><HR/><br>"; contador++;};
 
 funchead returns [String t]: tbas IDENTIFIER '(' typedef ')'{$t = $tbas.t + " <SPAN CLASS=\"ident\">" + $IDENTIFIER.text + "</SPAN> (" + $typedef.t + ")";};
 
 typedef returns [String t]: typedef1{$t = $typedef1.t;}
-       | {$t = "\n";};
+       | {$t = "<br>";};
 
 typedef1 returns [String t]: tbas IDENTIFIER{$t = $tbas.t + " <SPAN CLASS=\"ident\">" + $IDENTIFIER.text + "</SPAN>";}
         | tbas IDENTIFIER ',' typedef1{$t = $tbas.t + " <SPAN CLASS=\"ident\">" + $IDENTIFIER.text + "</SPAN>, " + $typedef1.t;};
@@ -67,31 +67,31 @@ typedef1 returns [String t]: tbas IDENTIFIER{$t = $tbas.t + " <SPAN CLASS=\"iden
 mainhead returns [String t]: tvoid 'Main' '(' typedef ')'{$t = $tvoid.t + " <SPAN CLASS=\"palres\">Main</SPAN>(" + $typedef.t + ")";};
 
 code returns [String t]: sent code1{$t = "<DIV style=\"text-indent: 2cm\">" + $sent.t + $code1.t + "</DIV>";}
-    | {$t = "\n";};
+    | {$t = "<br>";};
 code1 returns [String t]: sent code1{$t = $sent.t + $code1.t;}
-     | {$t = "\n";};
+     | {$t = "<br>";};
 
-sent returns [String t]: asig ';'{$t = $asig.t + ";\n";}
-    | funccall ';'{$t = $funccall.t + ";" +"\n";}
-    | vardef ';'{$t = $vardef.t + ";" + "\n";}
-    | returna ';'{$t = $returna.t + ";" + "\n";}
+sent returns [String t]: asig ';'{$t = $asig.t + ";<br>";}
+    | funccall ';'{$t = $funccall.t + ";" +"<br>";}
+    | vardef ';'{$t = $vardef.t + ";" + "<br>";}
+    | returna ';'{$t = $returna.t + ";" + "<br>";}
     | ifa{$t = $ifa.t;}
     | whilea{$t = $whilea.t;}
     | dowhile{$t = $dowhile.t;}
     | fora{$t = $fora.t;};
 
-ifa returns [String t]: 'if' expcond '{' code '}' elsea{$t = "<SPAN CLASS=\"palres\">if</SPAN> " + $expcond.t + "{\n" + $code.t + "\n" + "}\n" + $elsea.t;};
+ifa returns [String t]: 'if' expcond '{' code '}' elsea{$t = "<SPAN CLASS=\"palres\">if</SPAN> " + $expcond.t + "{<br>" + $code.t + "<br>" + "}<br>" + $elsea.t;};
 
-elsea returns [String t]: 'else' '{' code '}'{$t = "<SPAN CLASS=\"palres\">else</SPAN>{\n" + $code.t + "\n}\n";}
+elsea returns [String t]: 'else' '{' code '}'{$t = "<SPAN CLASS=\"palres\">else</SPAN>{<br>" + $code.t + "<br>}<br>";}
     | 'else' ifa{$t = "<SPAN CLASS=\"palres\">else " + "</SPAN>" + $ifa.t;}
-    | {$t = "\n";};
+    | {$t = "<br>";};
 
-whilea returns [String t]: 'while' '(' expcond ')' '{' code '}'{$t = "<SPAN CLASS=\"palres\">while</SPAN> (" + $expcond.t + ") {\n" + $code.t + "\n}\n";};
+whilea returns [String t]: 'while' '(' expcond ')' '{' code '}'{$t = "<SPAN CLASS=\"palres\">while</SPAN> (" + $expcond.t + ") {<br>" + $code.t + "<br>}<br>";};
 
-dowhile returns [String t]: 'do' '{' code '}' 'while' '('expcond ')' ';'{$t = "<SPAN CLASS=\"palres\">do</SPAN> {\n" + $code.t + "\n}\n" + "while (" + $expcond.t + ");" + "\n";};
+dowhile returns [String t]: 'do' '{' code '}' 'while' '('expcond ')' ';'{$t = "<SPAN CLASS=\"palres\">do</SPAN> {<br>" + $code.t + "<br>}<br>" + "while (" + $expcond.t + ");" + "<br>";};
 
 fora returns [String t]: 'for' '(' vardef ';' expcond ';' asig ')' '{' code '}'{$t = "<SPAN CLASS=\"palres\">for</SPAN>" + "(" + $vardef.t + "; " + $expcond.t + "; " + $asig.t + ")" + "{\n" + $code.t + "\n" +"}\n";}
-   | 'for' '(' asig ';' expcond';' asig ')' '{' code '}'{$t = "<SPAN CLASS=\"palres\">for</SPAN> (" + $asig.t + ";" + $expcond.t + ";" + $asig.t + ") {\n" + $code.t + "\n}\n";};
+   | 'for' '(' asig ';' expcond';' asig ')' '{' code '}'{$t = "<SPAN CLASS=\"palres\">for</SPAN> (" + $asig.t + ";" + $expcond.t + ";" + $asig.t + ") {<br>" + $code.t + "<br>}<br>";};
 
 expcond returns [String t]: expcond oplog expcond{$t = $expcond.t + " " + $oplog.t + " " + $expcond.t;}
        | factorcond{$t = $factorcond.t;};
@@ -109,7 +109,7 @@ opcomp returns [String t]: '<'{$t = "<";}
       |'>='{$t = ">=";}
       | '=='{$t = "==";};
 
-returna returns [String t]: 'return' exp{$t = "<SPAN CLASS=\"palres\">return</SPAN>" + $exp.t + ";" + "\n";};
+returna returns [String t]: 'return' exp{$t = "<SPAN CLASS=\"palres\">return</SPAN>" + $exp.t + ";" + "<br>";};
 
 
 asig returns [String t]: IDENTIFIER '=' exp {$t = "<SPAN CLASS=\"ident\">" + $IDENTIFIER.text + "</SPAN> = " + $exp.t;};
@@ -127,11 +127,11 @@ factor returns [String t]: simpvalue{$t = $simpvalue.t;}
       | '(' exp ')'{$t = "(" + $exp.t + ")";}
       | funccall{$t = $funccall.t;};
 
-funccall returns [String t]: IDENTIFIER subparamlist{$t = "<A HREF=\"#" + $IDENTIFIER.text + "\"><SPAN CLASS=\"ident\">" + $IDENTIFIER.text + "</SPAN> " + $subparamlist.t + "\n";}
-        | CONST_DEF_IDENTIFIER subparamlist{$t = "<A HREF=\"#" + $CONST_DEF_IDENTIFIER.text + "\">" + "<SPAN CLASS=\"cte\">" + $CONST_DEF_IDENTIFIER.text + "</SPAN>" + $subparamlist.t + "\n";};
+funccall returns [String t]: IDENTIFIER subparamlist{$t = "<A HREF=\"#" + $IDENTIFIER.text + "\"><SPAN CLASS=\"ident\">" + $IDENTIFIER.text + "</SPAN> " + $subparamlist.t + "<br>";}
+        | CONST_DEF_IDENTIFIER subparamlist{$t = "<A HREF=\"#" + $CONST_DEF_IDENTIFIER.text + "\">" + "<SPAN CLASS=\"cte\">" + $CONST_DEF_IDENTIFIER.text + "</SPAN>" + $subparamlist.t + "<br>";};
 
 subparamlist returns [String t]: '(' explist ')'{$t = "(" + $explist.t + ")";}
-             | {$t = "\n";};
+             | {$t = "<br>";};
 
 explist returns [String t]: exp{$t = $exp.t;}
        | exp ',' explist{$t = $exp.t + ", " + $explist.t;};
