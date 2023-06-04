@@ -12,11 +12,14 @@ import java.io.*;
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast", "CheckReturnValue"})
 public class gramaticaParser extends Parser {
 
-	public String pagina = "<!DOCTYPE html>\n"+ "<HTML>\n"+ "<HEAD>\n"+ "<TITLE>codigo_prueba.c</TITLE>\n"+ "</HEAD>\n"+ "<BODY>\n"+ "<A name=\"programa\"><H1>Programa: codigo_prueba.c<H1></A>\n"+ "<DIV>\n";
+	public String pagina = "<!DOCTYPE html>\n"+ "<HTML>\n"+ "<HEAD>\n"+ "<TITLE>";
+	public String resto = "</TITLE>\n"+ "</HEAD>\n"+ "<BODY>\n"+ "<A name=\"programa\"><H1>Programa: ";
+	public String titulo1 = "<H1></A><br>";
 	public String funciones = "<H2>Funciones:</H2>\n"+ "<UL>\n" + "<LI><A HREF=\"#principal\">Programa principal</LI>";
 	public String funcionesCod = "";
-	public String principal = "\n" + "<A name=\"principal\"><H2>Programa Principal</H2></A>";
+	public String principal = "<A name=\"principal\"><H2>Programa Principal</H2></A>";
 	public int contador = 0;
+	public String name;
 
 	static { RuntimeMetaData.checkVersion("4.12.0", RuntimeMetaData.VERSION); }
 
@@ -174,17 +177,20 @@ public class gramaticaParser extends Parser {
 			setState(110);
 			((ProgramContext)_localctx).sentlist = sentlist();
 			principal += ((ProgramContext)_localctx).sentlist.t;
+			          pagina += name;
+			          pagina += resto;
+			          pagina += name;
+			          pagina += titulo1;
 			          pagina += funciones;
 			          pagina += "<HR>";
 			          pagina += funcionesCod;
 			          pagina += principal;
-			          pagina += "</DIV></BODY></HTML>";
+			          pagina += "</BODY></HTML>";
 			          File f = new File("codigo_prueba.html");
 			          try {
 			              f.createNewFile();
 			              FileWriter fw = new FileWriter(f);
 			              BufferedWriter bw = new BufferedWriter(fw);
-
 			              bw.write(pagina);
 			              bw.close();
 			          }catch(Exception e){System.out.println(e);}
@@ -252,7 +258,7 @@ public class gramaticaParser extends Parser {
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				((DcllistContext)_localctx).t =  "<br>";
+				((DcllistContext)_localctx).t =  "";
 				}
 				break;
 			}
@@ -318,7 +324,7 @@ public class gramaticaParser extends Parser {
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				((Dcllist1Context)_localctx).t =  "<br>";
+				((Dcllist1Context)_localctx).t =  "";
 				}
 				break;
 			}
@@ -384,7 +390,7 @@ public class gramaticaParser extends Parser {
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				((FunlistContext)_localctx).t =  "<HR/><br>";
+				((FunlistContext)_localctx).t =  "<HR/>";
 				}
 				break;
 			}
@@ -450,7 +456,7 @@ public class gramaticaParser extends Parser {
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				((Funlist1Context)_localctx).t =  "</UL><br>" + "<HR/><br>";
+				((Funlist1Context)_localctx).t =  "</UL>" + "<HR/>";
 				}
 				break;
 			}
@@ -510,7 +516,7 @@ public class gramaticaParser extends Parser {
 			((SentlistContext)_localctx).code = code();
 			setState(144);
 			match(T__1);
-			((SentlistContext)_localctx).t =  ((SentlistContext)_localctx).mainhead.t + " {<br>" + ((SentlistContext)_localctx).code.t + "<br>}<br>" + "<A HREF=\"#principal\">Inicio del Programa Principal</A> <A HREF=\"#programa\">inicio del Programa</A>";
+			((SentlistContext)_localctx).t =  ((SentlistContext)_localctx).mainhead.t + " {" + ((SentlistContext)_localctx).code.t + "}" + "<A HREF=\"#principal\">Inicio del Programa Principal</A> <A HREF=\"#programa\">inicio del Programa</A>";
 			}
 		}
 		catch (RecognitionException re) {
@@ -640,7 +646,7 @@ public class gramaticaParser extends Parser {
 			((CtedefContext)_localctx).simpvalue = simpvalue();
 			setState(158);
 			((CtedefContext)_localctx).ctelist1 = ctelist1();
-			((CtedefContext)_localctx).t =  "<SPAN CLASS=\"palres\">#define</SPAN> " + "<SPAN CLASS=\"cte\">" + (((CtedefContext)_localctx).CONST_DEF_IDENTIFIER!=null?((CtedefContext)_localctx).CONST_DEF_IDENTIFIER.getText():null) + "</SPAN> " + ((CtedefContext)_localctx).simpvalue.t + "<br>" + ((CtedefContext)_localctx).ctelist1.t + "<br>";
+			((CtedefContext)_localctx).t =  "<SPAN CLASS=\"palres\">#define</SPAN> " + "<SPAN CLASS=\"cte\">" + (((CtedefContext)_localctx).CONST_DEF_IDENTIFIER!=null?((CtedefContext)_localctx).CONST_DEF_IDENTIFIER.getText():null) + "</SPAN> " + ((CtedefContext)_localctx).simpvalue.t + "" + ((CtedefContext)_localctx).ctelist1.t + "";
 			}
 		}
 		catch (RecognitionException re) {
@@ -704,13 +710,13 @@ public class gramaticaParser extends Parser {
 				((Ctelist1Context)_localctx).simpvalue = simpvalue();
 				setState(164);
 				((Ctelist1Context)_localctx).ctelist1 = ctelist1();
-				((Ctelist1Context)_localctx).t =  "<SPAN CLASS=\"palres\">#define</SPAN> " + "<SPAN CLASS=\"cte\">" + (((Ctelist1Context)_localctx).CONST_DEF_IDENTIFIER!=null?((Ctelist1Context)_localctx).CONST_DEF_IDENTIFIER.getText():null) + "</SPAN> " + ((Ctelist1Context)_localctx).simpvalue.t + "<br>" + ((Ctelist1Context)_localctx).ctelist1.t + "<br>";
+				((Ctelist1Context)_localctx).t =  "<SPAN CLASS=\"palres\">#define</SPAN> " + "<SPAN CLASS=\"cte\">" + (((Ctelist1Context)_localctx).CONST_DEF_IDENTIFIER!=null?((Ctelist1Context)_localctx).CONST_DEF_IDENTIFIER.getText():null) + "</SPAN> " + ((Ctelist1Context)_localctx).simpvalue.t + "" + ((Ctelist1Context)_localctx).ctelist1.t + "";
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				((Ctelist1Context)_localctx).t =  "<br>";
+				((Ctelist1Context)_localctx).t =  "";
 				}
 				break;
 			}
@@ -908,7 +914,7 @@ public class gramaticaParser extends Parser {
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				((Varlist1Context)_localctx).t =  "<br>";
+				((Varlist1Context)_localctx).t =  "";
 				}
 				break;
 			}
@@ -970,7 +976,7 @@ public class gramaticaParser extends Parser {
 				((VardefContext)_localctx).tbas = tbas();
 				setState(192);
 				((VardefContext)_localctx).IDENTIFIER = match(IDENTIFIER);
-				((VardefContext)_localctx).t =  ((VardefContext)_localctx).tbas.t + " <SPAN CLASS=\"ident\">" + (((VardefContext)_localctx).IDENTIFIER!=null?((VardefContext)_localctx).IDENTIFIER.getText():null) + "</SPAN><br>";
+				((VardefContext)_localctx).t =  ((VardefContext)_localctx).tbas.t + " <SPAN CLASS=\"ident\">" + (((VardefContext)_localctx).IDENTIFIER!=null?((VardefContext)_localctx).IDENTIFIER.getText():null) + "</SPAN>";
 				}
 				break;
 			case 2:
@@ -984,7 +990,7 @@ public class gramaticaParser extends Parser {
 				match(T__4);
 				setState(198);
 				((VardefContext)_localctx).simpvalue = simpvalue();
-				((VardefContext)_localctx).t =  ((VardefContext)_localctx).tbas.t + " <SPAN CLASS=\"ident\">" + (((VardefContext)_localctx).IDENTIFIER!=null?((VardefContext)_localctx).IDENTIFIER.getText():null) + "</SPAN> = " + ((VardefContext)_localctx).simpvalue.t + "<br>";
+				((VardefContext)_localctx).t =  ((VardefContext)_localctx).tbas.t + " <SPAN CLASS=\"ident\">" + (((VardefContext)_localctx).IDENTIFIER!=null?((VardefContext)_localctx).IDENTIFIER.getText():null) + "</SPAN> = " + ((VardefContext)_localctx).simpvalue.t + "";
 				}
 				break;
 			}
@@ -1223,7 +1229,7 @@ public class gramaticaParser extends Parser {
 			((FuncdefContext)_localctx).code = code();
 			setState(226);
 			match(T__1);
-			((FuncdefContext)_localctx).t =  "<DIV><A name=\"FUNCIONES:funcion" + contador + "\">" + ((FuncdefContext)_localctx).funchead.t + "<br>{<br>" + ((FuncdefContext)_localctx).code.t + "<br>}<br><A HREF=\"#FUNCIONES:funcion" + contador + "\">Iicio de la funcion</A> <A HREF=\"#principal\"> Programa Principal</A><br></DIV><HR/><br>"; contador++;
+			((FuncdefContext)_localctx).t =  "<DIV><A name=\"FUNCIONES:funcion" + contador + "\">" + ((FuncdefContext)_localctx).funchead.t + "{" + ((FuncdefContext)_localctx).code.t + "}<A HREF=\"#FUNCIONES:funcion" + contador + "\">Iicio de la funcion</A> <A HREF=\"#principal\"> Programa Principal</A></DIV><HR/>"; contador++;
 			}
 		}
 		catch (RecognitionException re) {
@@ -1345,7 +1351,7 @@ public class gramaticaParser extends Parser {
 			case T__7:
 				enterOuterAlt(_localctx, 2);
 				{
-				((TypedefContext)_localctx).t =  "<br>";
+				((TypedefContext)_localctx).t =  "";
 				}
 				break;
 			default:
@@ -1558,7 +1564,7 @@ public class gramaticaParser extends Parser {
 			case T__1:
 				enterOuterAlt(_localctx, 2);
 				{
-				((CodeContext)_localctx).t =  "<br>";
+				((CodeContext)_localctx).t =  "";
 				}
 				break;
 			default:
@@ -1635,7 +1641,7 @@ public class gramaticaParser extends Parser {
 			case T__1:
 				enterOuterAlt(_localctx, 2);
 				{
-				((Code1Context)_localctx).t =  "<br>";
+				((Code1Context)_localctx).t =  "";
 				}
 				break;
 			default:
@@ -1721,7 +1727,7 @@ public class gramaticaParser extends Parser {
 				((SentContext)_localctx).asig = asig();
 				setState(276);
 				match(T__3);
-				((SentContext)_localctx).t =  ((SentContext)_localctx).asig.t + ";<br>";
+				((SentContext)_localctx).t =  ((SentContext)_localctx).asig.t + ";";
 				}
 				break;
 			case 2:
@@ -1731,7 +1737,7 @@ public class gramaticaParser extends Parser {
 				((SentContext)_localctx).funccall = funccall();
 				setState(280);
 				match(T__3);
-				((SentContext)_localctx).t =  ((SentContext)_localctx).funccall.t + ";" +"<br>";
+				((SentContext)_localctx).t =  ((SentContext)_localctx).funccall.t + ";" +"";
 				}
 				break;
 			case 3:
@@ -1741,7 +1747,7 @@ public class gramaticaParser extends Parser {
 				((SentContext)_localctx).vardef = vardef();
 				setState(284);
 				match(T__3);
-				((SentContext)_localctx).t =  ((SentContext)_localctx).vardef.t + ";" + "<br>";
+				((SentContext)_localctx).t =  ((SentContext)_localctx).vardef.t + ";" + "";
 				}
 				break;
 			case 4:
@@ -1751,7 +1757,7 @@ public class gramaticaParser extends Parser {
 				((SentContext)_localctx).returna = returna();
 				setState(288);
 				match(T__3);
-				((SentContext)_localctx).t =  ((SentContext)_localctx).returna.t + ";" + "<br>";
+				((SentContext)_localctx).t =  ((SentContext)_localctx).returna.t + ";";
 				}
 				break;
 			case 5:
@@ -1851,7 +1857,7 @@ public class gramaticaParser extends Parser {
 			match(T__1);
 			setState(310);
 			((IfaContext)_localctx).elsea = elsea();
-			((IfaContext)_localctx).t =  "<SPAN CLASS=\"palres\">if</SPAN> " + ((IfaContext)_localctx).expcond.t + "{<br>" + ((IfaContext)_localctx).code.t + "<br>" + "}" + ((IfaContext)_localctx).elsea.t;
+			((IfaContext)_localctx).t =  "<SPAN CLASS=\"palres\">if</SPAN> " + ((IfaContext)_localctx).expcond.t + "{" + ((IfaContext)_localctx).code.t + "" + "}" + ((IfaContext)_localctx).elsea.t;
 			}
 		}
 		catch (RecognitionException re) {
@@ -1913,7 +1919,7 @@ public class gramaticaParser extends Parser {
 				((ElseaContext)_localctx).code = code();
 				setState(316);
 				match(T__1);
-				((ElseaContext)_localctx).t =  "<SPAN CLASS=\"palres\">else</SPAN>{<br>" + ((ElseaContext)_localctx).code.t + "<br>}<br>";
+				((ElseaContext)_localctx).t =  "<SPAN CLASS=\"palres\">else</SPAN>{" + ((ElseaContext)_localctx).code.t + "}";
 				}
 				break;
 			case 2:
@@ -1929,7 +1935,7 @@ public class gramaticaParser extends Parser {
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				((ElseaContext)_localctx).t =  "<br>";
+				((ElseaContext)_localctx).t =  "";
 				}
 				break;
 			}
@@ -1995,7 +2001,7 @@ public class gramaticaParser extends Parser {
 			((WhileaContext)_localctx).code = code();
 			setState(332);
 			match(T__1);
-			((WhileaContext)_localctx).t =  "<SPAN CLASS=\"palres\">while</SPAN> (" + ((WhileaContext)_localctx).expcond.t + ") {<br>" + ((WhileaContext)_localctx).code.t + "<br>}<br>";
+			((WhileaContext)_localctx).t =  "<SPAN CLASS=\"palres\">while</SPAN> (" + ((WhileaContext)_localctx).expcond.t + ") {" + ((WhileaContext)_localctx).code.t + "}";
 			}
 		}
 		catch (RecognitionException re) {
@@ -2063,7 +2069,7 @@ public class gramaticaParser extends Parser {
 			match(T__7);
 			setState(343);
 			match(T__3);
-			((DowhileContext)_localctx).t =  "<SPAN CLASS=\"palres\">do</SPAN> {<br>" + ((DowhileContext)_localctx).code.t + "<br>}<br>" + "while (" + ((DowhileContext)_localctx).expcond.t + ");" + "<br>";
+			((DowhileContext)_localctx).t =  "<SPAN CLASS=\"palres\">do</SPAN> {" + ((DowhileContext)_localctx).code.t + "}" + "while (" + ((DowhileContext)_localctx).expcond.t + ");" + "";
 			}
 		}
 		catch (RecognitionException re) {
@@ -2178,7 +2184,7 @@ public class gramaticaParser extends Parser {
 				((ForaContext)_localctx).code = code();
 				setState(369);
 				match(T__1);
-				((ForaContext)_localctx).t =  "<SPAN CLASS=\"palres\">for</SPAN> (" + ((ForaContext)_localctx).asig.t + ";" + ((ForaContext)_localctx).expcond.t + ";" + ((ForaContext)_localctx).asig.t + "){<br>" + ((ForaContext)_localctx).code.t + "<br>}<br>";
+				((ForaContext)_localctx).t =  "<SPAN CLASS=\"palres\">for</SPAN> (" + ((ForaContext)_localctx).asig.t + ";" + ((ForaContext)_localctx).expcond.t + ";" + ((ForaContext)_localctx).asig.t + "){" + ((ForaContext)_localctx).code.t + "}";
 				}
 				break;
 			}
@@ -2944,7 +2950,7 @@ public class gramaticaParser extends Parser {
 				((FunccallContext)_localctx).IDENTIFIER = match(IDENTIFIER);
 				setState(471);
 				((FunccallContext)_localctx).subparamlist = subparamlist();
-				((FunccallContext)_localctx).t =  "<A HREF=\"#" + (((FunccallContext)_localctx).IDENTIFIER!=null?((FunccallContext)_localctx).IDENTIFIER.getText():null) + "\"><SPAN CLASS=\"ident\">" + (((FunccallContext)_localctx).IDENTIFIER!=null?((FunccallContext)_localctx).IDENTIFIER.getText():null) + "</SPAN> " + ((FunccallContext)_localctx).subparamlist.t + "<br>";
+				((FunccallContext)_localctx).t =  "<A HREF=\"#" + (((FunccallContext)_localctx).IDENTIFIER!=null?((FunccallContext)_localctx).IDENTIFIER.getText():null) + "\"><SPAN CLASS=\"ident\">" + (((FunccallContext)_localctx).IDENTIFIER!=null?((FunccallContext)_localctx).IDENTIFIER.getText():null) + "</SPAN> " + ((FunccallContext)_localctx).subparamlist.t;
 				}
 				break;
 			case CONST_DEF_IDENTIFIER:
@@ -2954,7 +2960,7 @@ public class gramaticaParser extends Parser {
 				((FunccallContext)_localctx).CONST_DEF_IDENTIFIER = match(CONST_DEF_IDENTIFIER);
 				setState(475);
 				((FunccallContext)_localctx).subparamlist = subparamlist();
-				((FunccallContext)_localctx).t =  "<A HREF=\"#" + (((FunccallContext)_localctx).CONST_DEF_IDENTIFIER!=null?((FunccallContext)_localctx).CONST_DEF_IDENTIFIER.getText():null) + "\">" + "<SPAN CLASS=\"cte\">" + (((FunccallContext)_localctx).CONST_DEF_IDENTIFIER!=null?((FunccallContext)_localctx).CONST_DEF_IDENTIFIER.getText():null) + "</SPAN>" + ((FunccallContext)_localctx).subparamlist.t + "<br>";
+				((FunccallContext)_localctx).t =  "<A HREF=\"#" + (((FunccallContext)_localctx).CONST_DEF_IDENTIFIER!=null?((FunccallContext)_localctx).CONST_DEF_IDENTIFIER.getText():null) + "\">" + "<SPAN CLASS=\"cte\">" + (((FunccallContext)_localctx).CONST_DEF_IDENTIFIER!=null?((FunccallContext)_localctx).CONST_DEF_IDENTIFIER.getText():null) + "</SPAN>" + ((FunccallContext)_localctx).subparamlist.t;
 				}
 				break;
 			default:
@@ -3020,7 +3026,7 @@ public class gramaticaParser extends Parser {
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				((SubparamlistContext)_localctx).t =  "<br>";
+				((SubparamlistContext)_localctx).t =  "";
 				}
 				break;
 			}
