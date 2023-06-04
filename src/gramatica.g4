@@ -131,7 +131,7 @@ factor returns [String t]: simpvalue{$t = $simpvalue.t;}
       | '(' exp ')'{$t = "(" + $exp.t + ")";}
       | funccall{$t = $funccall.t;};
 
-funccall returns [String t]: IDENTIFIER subparamlist{$t = "<A HREF=\"#" + $IDENTIFIER.text + "\"><SPAN CLASS=\"ident\">" + $IDENTIFIER.text + "</SPAN> " + $subparamlist.t + ";<br>";}
+funccall returns [String t]: IDENTIFIER subparamlist{$t = "<A HREF=\"#" + $IDENTIFIER.text + "\"><SPAN CLASS=\"ident\">" + $IDENTIFIER.text + "</SPAN> " + $subparamlist.t;}
         | CONST_DEF_IDENTIFIER subparamlist{$t = "<A HREF=\"#" + $CONST_DEF_IDENTIFIER.text + "\">" + "<SPAN CLASS=\"cte\">" + $CONST_DEF_IDENTIFIER.text + "</SPAN>" + $subparamlist.t;};
 
 subparamlist returns [String t]: '(' explist ')'{$t = "(" + $explist.t + ")";}
@@ -140,7 +140,7 @@ subparamlist returns [String t]: '(' explist ')'{$t = "(" + $explist.t + ")";}
 explist returns [String t]: exp{$t = $exp.t;}
        | exp ',' explist{$t = $exp.t + ", " + $explist.t;};
 
-Stext: (id|const| int| real  string | com | aux | simb | resv | typ | voi);
+text: (id|const| int| real  string | com | aux | simb | resv | typ | voi);
 
 id: IDENTIFIER;
 const: CONST_DEF_IDENTIFIER;

@@ -140,7 +140,7 @@ subparamlist returns [String t]: '(' explist ')'{$t = "(" + $explist.t + ")";}
 explist returns [String t]: exp{$t = $exp.t;}
        | exp ',' explist{$t = $exp.t + ", " + $explist.t;};
 
-Stext: (id|const| int| real  string | com | aux | simb | resv | typ | voi);
+text: (id|const| int| real  string | com | aux | simb | resv | typ | voi);
 
 id: IDENTIFIER;
 const: CONST_DEF_IDENTIFIER;
