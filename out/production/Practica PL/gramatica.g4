@@ -71,7 +71,7 @@ typedef1 returns [String t]: tbas IDENTIFIER{$t = $tbas.t + " <SPAN CLASS=\"iden
 
 mainhead returns [String t]: tvoid 'Main' '(' typedef ')'{$t = $tvoid.t + " <SPAN CLASS=\"palres\">Main</SPAN>(" + $typedef.t + ")";};
 
-code returns [String t]: sent code1{$t = "<DIV style=\"text-indent: 2cm\">" + $sent.t + $code1.t + "</DIV>";}
+code returns [String t]: sent code1{$t = "<DIV style=\"margin-left: 2cm;\">" + $sent.t + $code1.t + "</DIV>";}
     | {$t = "";};
 code1 returns [String t]: sent code1{$t = $sent.t + $code1.t;}
      | {$t = "";};

@@ -1559,7 +1559,7 @@ public class gramaticaParser extends Parser {
 				((CodeContext)_localctx).sent = sent();
 				setState(262);
 				((CodeContext)_localctx).code1 = code1();
-				((CodeContext)_localctx).t =  "<DIV style=\"text-indent: 2cm\">" + ((CodeContext)_localctx).sent.t + ((CodeContext)_localctx).code1.t + "</DIV>";
+				((CodeContext)_localctx).t =  "<DIV style=\"margin-left: 2cm;\">" + ((CodeContext)_localctx).sent.t + ((CodeContext)_localctx).code1.t + "</DIV>";
 				}
 				break;
 			case T__1:
