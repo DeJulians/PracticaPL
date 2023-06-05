@@ -12,7 +12,7 @@ program:  dcllist{principal += $dcllist.t;}
           pagina += funcionesCod;
           pagina += principal;
           pagina += "</BODY></HTML>";
-          File f = new File("codigo_prueba.html");
+          File f = new File(name);
           try {
               f.createNewFile();
               FileWriter fw = new FileWriter(f);
