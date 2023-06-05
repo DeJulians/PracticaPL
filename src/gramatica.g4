@@ -8,7 +8,6 @@ program:  dcllist{principal += $dcllist.t;}
           pagina += name;
           pagina += titulo1;
           pagina += funciones;
-          pagina += "<HR>";
           pagina += funcionesCod;
           pagina += principal;
           pagina += "</BODY></HTML>";
@@ -26,10 +25,10 @@ dcllist returns [String t]: dcl dcllist1{$t = $dcl.t + " " + $dcllist1.t;}
 dcllist1 returns [String t]: dcl dcllist1{$t = $dcl.t + $dcllist1.t;}
         | {$t = "";};
 funlist returns [String t]: funcdef funlist1{$t = $funcdef.t + $funlist1.t;}
-       | {$t = "<HR/>";};
+       | {$t = "<HR>";};
 funlist1 returns [String t]: funcdef funlist1{$t = $funcdef.t + $funlist1.t;}
-                           | {$t = "</UL>" + "<HR/>";};
-sentlist returns [String t]: mainhead '{' code'}'{$t = $mainhead.t + " {" + $code.t + "}<br>" + "<A HREF=\"#principal\">Inicio del Programa Principal</A>   <A HREF=\"#programa\">Inicio del Programa</A>";};
+                           | {$t = "</UL>" + "<HR>";};
+sentlist returns [String t]: mainhead '{' code'}'{$t = $mainhead.t + " {" + $code.t + "}<br>" + "<A HREF=\"#principal\">Inicio del Programa Principal</A><a>  </a><A HREF=\"#programa\">Inicio del Programa</A>";};
 
 dcl returns [String t]: ctedef {$t = $ctedef.t;}
    | varlist{$t = $varlist.t;};
@@ -58,7 +57,7 @@ struct returns [String t]: 'struct' '{' varlist '}'{$t = "<SPAN CLASS=\"palres\"
 
 tvoid returns [String t]: VOID{$t = " <SPAN CLASS=\"palres\">" + $VOID.text + "</SPAN>";};
 
-funcdef returns [String t]: funchead {funciones += "<A HREF=\"#FUNCIONES:funcion" + contador + "\">" + "<LI>" + $funchead.t + "</LI></A>";} '{' code '}'{$t = "<DIV><A name=\"FUNCIONES:funcion" + contador + "\">" + $funchead.t + "</A>{<br>" + $code.t + "<br>}<br></DIV><A HREF=\"#FUNCIONES:funcion" + contador + "\">Iicio de la funcion</A>   <A HREF=\"#principal\"> Programa Principal</A><HR/>"; contador++;};
+funcdef returns [String t]: funchead {funciones += "<A HREF=\"#FUNCIONES:funcion" + contador + "\">" + "<LI>" + $funchead.t + "</LI></A>";} '{' code '}'{$t = "<DIV><A name=\"FUNCIONES:funcion" + contador + "\">" + $funchead.t + "</A>{<br>" + $code.t + "<br>}<br></DIV><A HREF=\"#FUNCIONES:funcion" + contador + "\">Iicio de la funcion</A><a>  </a><A HREF=\"#principal\">Programa Principal</A><HR>"; contador++;};
 
 funchead returns [String t]: tbas IDENTIFIER '(' typedef ')'{$t = $tbas.t + " <SPAN CLASS=\"ident\">" + $IDENTIFIER.text + "</SPAN> (" + $typedef.t + ")";};
 

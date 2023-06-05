@@ -516,7 +516,7 @@ public class gramaticaParser extends Parser {
 			((SentlistContext)_localctx).code = code();
 			setState(144);
 			match(T__1);
-			((SentlistContext)_localctx).t =  ((SentlistContext)_localctx).mainhead.t + " {" + ((SentlistContext)_localctx).code.t + "}" + "<A HREF=\"#principal\">Inicio del Programa Principal</A> <A HREF=\"#programa\">inicio del Programa</A>";
+			((SentlistContext)_localctx).t =  ((SentlistContext)_localctx).mainhead.t + " {" + ((SentlistContext)_localctx).code.t + "}<br>" + "<A HREF=\"#principal\">Inicio del Programa Principal</A>   <A HREF=\"#programa\">Inicio del Programa</A>";
 			}
 		}
 		catch (RecognitionException re) {
@@ -1229,7 +1229,7 @@ public class gramaticaParser extends Parser {
 			((FuncdefContext)_localctx).code = code();
 			setState(226);
 			match(T__1);
-			((FuncdefContext)_localctx).t =  "<DIV><A name=\"FUNCIONES:funcion" + contador + "\">" + ((FuncdefContext)_localctx).funchead.t + "</A>{<br>" + ((FuncdefContext)_localctx).code.t + "<br>}<br></DIV><A HREF=\"#FUNCIONES:funcion" + contador + "\">Iicio de la funcion </A><A HREF=\"#principal\"> Programa Principal</A><HR/>"; contador++;
+			((FuncdefContext)_localctx).t =  "<DIV><A name=\"FUNCIONES:funcion" + contador + "\">" + ((FuncdefContext)_localctx).funchead.t + "</A>{<br>" + ((FuncdefContext)_localctx).code.t + "<br>}<br></DIV><A HREF=\"#FUNCIONES:funcion" + contador + "\">Iicio de la funcion</A>   <A HREF=\"#principal\"> Programa Principal</A><HR/>"; contador++;
 			}
 		}
 		catch (RecognitionException re) {
@@ -1727,7 +1727,7 @@ public class gramaticaParser extends Parser {
 				((SentContext)_localctx).asig = asig();
 				setState(276);
 				match(T__3);
-				((SentContext)_localctx).t =  ((SentContext)_localctx).asig.t + ";";
+				((SentContext)_localctx).t =  ((SentContext)_localctx).asig.t + ";<br>";
 				}
 				break;
 			case 2:
@@ -1737,7 +1737,7 @@ public class gramaticaParser extends Parser {
 				((SentContext)_localctx).funccall = funccall();
 				setState(280);
 				match(T__3);
-				((SentContext)_localctx).t =  ((SentContext)_localctx).funccall.t + ";";
+				((SentContext)_localctx).t =  ((SentContext)_localctx).funccall.t + ";<br>";
 				}
 				break;
 			case 3:
@@ -1757,7 +1757,7 @@ public class gramaticaParser extends Parser {
 				((SentContext)_localctx).returna = returna();
 				setState(288);
 				match(T__3);
-				((SentContext)_localctx).t =  ((SentContext)_localctx).returna.t + ";";
+				((SentContext)_localctx).t =  ((SentContext)_localctx).returna.t + ";<br>";
 				}
 				break;
 			case 5:

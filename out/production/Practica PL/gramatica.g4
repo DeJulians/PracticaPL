@@ -29,7 +29,7 @@ funlist returns [String t]: funcdef funlist1{$t = $funcdef.t + $funlist1.t;}
        | {$t = "<HR/>";};
 funlist1 returns [String t]: funcdef funlist1{$t = $funcdef.t + $funlist1.t;}
                            | {$t = "</UL>" + "<HR/>";};
-sentlist returns [String t]: mainhead '{' code'}'{$t = $mainhead.t + " {" + $code.t + "}" + "<A HREF=\"#principal\">Inicio del Programa Principal</A> <A HREF=\"#programa\">inicio del Programa</A>";};
+sentlist returns [String t]: mainhead '{' code'}'{$t = $mainhead.t + " {" + $code.t + "}<br>" + "<A HREF=\"#principal\">Inicio del Programa Principal</A>   <A HREF=\"#programa\">Inicio del Programa</A>";};
 
 dcl returns [String t]: ctedef {$t = $ctedef.t;}
    | varlist{$t = $varlist.t;};
@@ -58,7 +58,7 @@ struct returns [String t]: 'struct' '{' varlist '}'{$t = "<SPAN CLASS=\"palres\"
 
 tvoid returns [String t]: VOID{$t = " <SPAN CLASS=\"palres\">" + $VOID.text + "</SPAN>";};
 
-funcdef returns [String t]: funchead {funciones += "<A HREF=\"#FUNCIONES:funcion" + contador + "\">" + "<LI>" + $funchead.t + "</LI></A>";} '{' code '}'{$t = "<DIV><A name=\"FUNCIONES:funcion" + contador + "\">" + $funchead.t + "</A>{<br>" + $code.t + "<br>}<br></DIV><A HREF=\"#FUNCIONES:funcion" + contador + "\">Iicio de la funcion </A><A HREF=\"#principal\"> Programa Principal</A><HR/>"; contador++;};
+funcdef returns [String t]: funchead {funciones += "<A HREF=\"#FUNCIONES:funcion" + contador + "\">" + "<LI>" + $funchead.t + "</LI></A>";} '{' code '}'{$t = "<DIV><A name=\"FUNCIONES:funcion" + contador + "\">" + $funchead.t + "</A>{<br>" + $code.t + "<br>}<br></DIV><A HREF=\"#FUNCIONES:funcion" + contador + "\">Iicio de la funcion</A>   <A HREF=\"#principal\"> Programa Principal</A><HR/>"; contador++;};
 
 funchead returns [String t]: tbas IDENTIFIER '(' typedef ')'{$t = $tbas.t + " <SPAN CLASS=\"ident\">" + $IDENTIFIER.text + "</SPAN> (" + $typedef.t + ")";};
 
@@ -75,10 +75,10 @@ code returns [String t]: sent code1{$t = "<DIV style=\"text-indent: 2cm\">" + $s
 code1 returns [String t]: sent code1{$t = $sent.t + $code1.t;}
      | {$t = "";};
 
-sent returns [String t]: asig ';'{$t = $asig.t + ";";}
-    | funccall ';'{$t = $funccall.t + ";";}
+sent returns [String t]: asig ';'{$t = $asig.t + ";<br>";}
+    | funccall ';'{$t = $funccall.t + ";<br>";}
     | vardef ';'{$t = $vardef.t;}
-    | returna ';'{$t = $returna.t + ";";}
+    | returna ';'{$t = $returna.t + ";<br>";}
     | ifa{$t = $ifa.t;}
     | whilea{$t = $whilea.t;}
     | dowhile{$t = $dowhile.t;}
