@@ -48,7 +48,7 @@ varlist1 returns [String t]: vardef ';' varlist1{$t = $vardef.t + ";<br>" + $var
                            | {$t = "";};
 
 vardef returns [String t]: tbas IDENTIFIER{$t = $tbas.t + " <SPAN CLASS=\"ident\">" + $IDENTIFIER.text + "</SPAN>";}
-      | tbas IDENTIFIER '=' simpvalue{$t = $tbas.t + " <SPAN CLASS=\"ident\">" + $IDENTIFIER.text + "</SPAN> = " + $simpvalue.t + "";};
+      | tbas IDENTIFIER '=' simpvalue{$t = $tbas.t + " <SPAN CLASS=\"ident\">" + $IDENTIFIER.text + "</SPAN> = " + $simpvalue.t;};
 
 tbas returns [String t]: TYPE{$t = "<SPAN CLASS=\"palres\">" + $TYPE.text + "</SPAN>";}
     | tvoid{$t = $tvoid.t;}
@@ -58,7 +58,7 @@ struct returns [String t]: 'struct' '{' varlist '}'{$t = "<SPAN CLASS=\"palres\"
 
 tvoid returns [String t]: VOID{$t = " <SPAN CLASS=\"palres\">" + $VOID.text + "</SPAN>";};
 
-funcdef returns [String t]: funchead {funciones += "<A HREF=\"#FUNCIONES:funcion" + contador + "\">" + "<LI>" + $funchead.t + "</LI>";} '{' code '}'{$t = "<DIV><A name=\"FUNCIONES:funcion" + contador + "\">" + $funchead.t + "{<br>" + $code.t + "<br>}<br></DIV><A HREF=\"#FUNCIONES:funcion" + contador + "\">Iicio de la funcion </A><A HREF=\"#principal\"> Programa Principal</A><HR/>"; contador++;};
+funcdef returns [String t]: funchead {funciones += "<A HREF=\"#FUNCIONES:funcion" + contador + "\">" + "<LI>" + $funchead.t + "</LI></A>";} '{' code '}'{$t = "<DIV><A name=\"FUNCIONES:funcion" + contador + "\">" + $funchead.t + "</A>{<br>" + $code.t + "<br>}<br></DIV><A HREF=\"#FUNCIONES:funcion" + contador + "\">Iicio de la funcion </A><A HREF=\"#principal\"> Programa Principal</A><HR/>"; contador++;};
 
 funchead returns [String t]: tbas IDENTIFIER '(' typedef ')'{$t = $tbas.t + " <SPAN CLASS=\"ident\">" + $IDENTIFIER.text + "</SPAN> (" + $typedef.t + ")";};
 
@@ -77,7 +77,7 @@ code1 returns [String t]: sent code1{$t = $sent.t + $code1.t;}
 
 sent returns [String t]: asig ';'{$t = $asig.t + ";";}
     | funccall ';'{$t = $funccall.t + ";";}
-    | vardef ';'{$t = $vardef.t + ";";}
+    | vardef ';'{$t = $vardef.t;}
     | returna ';'{$t = $returna.t + ";";}
     | ifa{$t = $ifa.t;}
     | whilea{$t = $whilea.t;}
@@ -131,8 +131,8 @@ factor returns [String t]: simpvalue{$t = $simpvalue.t;}
       | '(' exp ')'{$t = "(" + $exp.t + ")";}
       | funccall{$t = $funccall.t;};
 
-funccall returns [String t]: IDENTIFIER subparamlist{$t = "<A HREF=\"#" + $IDENTIFIER.text + "\"><SPAN CLASS=\"ident\">" + $IDENTIFIER.text + "</SPAN> " + $subparamlist.t + ";<br>";}
-        | CONST_DEF_IDENTIFIER subparamlist{$t = "<A HREF=\"#" + $CONST_DEF_IDENTIFIER.text + "\">" + "<SPAN CLASS=\"cte\">" + $CONST_DEF_IDENTIFIER.text + "</SPAN>" + $subparamlist.t;};
+funccall returns [String t]: IDENTIFIER subparamlist{$t = "<A HREF=\"#" + $IDENTIFIER.text + "\"><SPAN CLASS=\"ident\">" + $IDENTIFIER.text + "</SPAN></A> " + $subparamlist.t;}
+        | CONST_DEF_IDENTIFIER subparamlist{$t = "<A HREF=\"#" + $CONST_DEF_IDENTIFIER.text + "\">" + "<SPAN CLASS=\"cte\">" + $CONST_DEF_IDENTIFIER.text + "</SPAN></A>" + $subparamlist.t;};
 
 subparamlist returns [String t]: '(' explist ')'{$t = "(" + $explist.t + ")";}
              | {$t = "";};
@@ -158,8 +158,8 @@ RESERVED: ('break'|'register'|'case'|'return'|'for'|'if'|'else'|'switch'|'union'
           |'short'|'unsigned'|'goto'|'sizeof'|'volatile'|'static'|'while'|'struct'|'_Packed'|'const');
 TYPE: ('integer'|'float'|'string'|'long'|'enum'|'char'|'double'|'int');
 VOID: 'void';
-CONST_DEF_IDENTIFIER: [A-Z]* ([A-Z] | '_' | [0-9])* [A-Z]+ ([A-Z] | '_' | [0-9])*;
-IDENTIFIER: [a-z]* ([a-z] | '_' | [0-9])* [a-z]+ ([a-z] | '_' | [0-9])*;
+CONST_DEF_IDENTIFIER: ('_')?[A-Z]+ ([A-Z] | '_' | [0-9])* [A-Z]+ ([A-Z] | '_' | [0-9])*;
+IDENTIFIER: /*[a-z]* ([a-z] | '_' | [0-9])*/('_')?[a-z]+ ([a-z] | '_' | [0-9])*;
 NUMERIC_INTEGER_CONST: ('+'|'-')?[0-9]+;
 NUMERIC_REAL_CONST: (NUMERIC_INTEGER_CONST'.'[0-9]+ | ('+'|'-')?'.'[0-9]+ | NUMERIC_INTEGER_CONST('.'[0-9]+)?('e'|'E')('+'|'-')?[0-9]+);
 STRING_CONST: ('\''([a-zA-Z0-9] | Aux_text)*'\'' | '"'(Aux_text | [a-zA-Z0-9])*'"');

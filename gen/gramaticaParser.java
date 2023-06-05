@@ -14,12 +14,13 @@ public class gramaticaParser extends Parser {
 
 	public String pagina = "<!DOCTYPE html>\n"+ "<HTML>\n"+ "<HEAD>\n"+ "<TITLE>";
 	public String resto = "</TITLE>\n"+ "</HEAD>\n"+ "<BODY>\n"+ "<A name=\"programa\"><H1>Programa: ";
-	public String titulo1 = "<H1></A><br>";
-	public String funciones = "<H2>Funciones:</H2>\n"+ "<UL>\n" + "<LI><A HREF=\"#principal\">Programa principal</LI>";
+	public String titulo1 = "</H1></A><br>";
+	public String funciones = "<H2>Funciones:</H2>\n"+ "<UL>\n" + "<LI><A HREF=\"#principal\">Programa principal</A></LI>";
 	public String funcionesCod = "";
 	public String principal = "<A name=\"principal\"><H2>Programa Principal</H2></A>";
 	public int contador = 0;
 	public String name;
+
 	static { RuntimeMetaData.checkVersion("4.12.0", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
@@ -989,7 +990,7 @@ public class gramaticaParser extends Parser {
 				match(T__4);
 				setState(198);
 				((VardefContext)_localctx).simpvalue = simpvalue();
-				((VardefContext)_localctx).t =  ((VardefContext)_localctx).tbas.t + " <SPAN CLASS=\"ident\">" + (((VardefContext)_localctx).IDENTIFIER!=null?((VardefContext)_localctx).IDENTIFIER.getText():null) + "</SPAN> = " + ((VardefContext)_localctx).simpvalue.t + "";
+				((VardefContext)_localctx).t =  ((VardefContext)_localctx).tbas.t + " <SPAN CLASS=\"ident\">" + (((VardefContext)_localctx).IDENTIFIER!=null?((VardefContext)_localctx).IDENTIFIER.getText():null) + "</SPAN> = " + ((VardefContext)_localctx).simpvalue.t;
 				}
 				break;
 			}
@@ -1221,14 +1222,14 @@ public class gramaticaParser extends Parser {
 			{
 			setState(222);
 			((FuncdefContext)_localctx).funchead = funchead();
-			funciones += "<A HREF=\"#FUNCIONES:funcion" + contador + "\">" + "<LI>" + ((FuncdefContext)_localctx).funchead.t + "</LI>";
+			funciones += "<A HREF=\"#FUNCIONES:funcion" + contador + "\">" + "<LI>" + ((FuncdefContext)_localctx).funchead.t + "</LI></A>";
 			setState(224);
 			match(T__0);
 			setState(225);
 			((FuncdefContext)_localctx).code = code();
 			setState(226);
 			match(T__1);
-			((FuncdefContext)_localctx).t =  "<DIV><A name=\"FUNCIONES:funcion" + contador + "\">" + ((FuncdefContext)_localctx).funchead.t + "{<br>" + ((FuncdefContext)_localctx).code.t + "<br>}<br></DIV><A HREF=\"#FUNCIONES:funcion" + contador + "\">Iicio de la funcion </A><A HREF=\"#principal\"> Programa Principal</A><HR/>"; contador++;
+			((FuncdefContext)_localctx).t =  "<DIV><A name=\"FUNCIONES:funcion" + contador + "\">" + ((FuncdefContext)_localctx).funchead.t + "</A>{<br>" + ((FuncdefContext)_localctx).code.t + "<br>}<br></DIV><A HREF=\"#FUNCIONES:funcion" + contador + "\">Iicio de la funcion </A><A HREF=\"#principal\"> Programa Principal</A><HR/>"; contador++;
 			}
 		}
 		catch (RecognitionException re) {
@@ -1746,7 +1747,7 @@ public class gramaticaParser extends Parser {
 				((SentContext)_localctx).vardef = vardef();
 				setState(284);
 				match(T__3);
-				((SentContext)_localctx).t =  ((SentContext)_localctx).vardef.t + ";";
+				((SentContext)_localctx).t =  ((SentContext)_localctx).vardef.t;
 				}
 				break;
 			case 4:
@@ -2949,7 +2950,7 @@ public class gramaticaParser extends Parser {
 				((FunccallContext)_localctx).IDENTIFIER = match(IDENTIFIER);
 				setState(471);
 				((FunccallContext)_localctx).subparamlist = subparamlist();
-				((FunccallContext)_localctx).t =  "<A HREF=\"#" + (((FunccallContext)_localctx).IDENTIFIER!=null?((FunccallContext)_localctx).IDENTIFIER.getText():null) + "\"><SPAN CLASS=\"ident\">" + (((FunccallContext)_localctx).IDENTIFIER!=null?((FunccallContext)_localctx).IDENTIFIER.getText():null) + "</SPAN> " + ((FunccallContext)_localctx).subparamlist.t + ";<br>";
+				((FunccallContext)_localctx).t =  "<A HREF=\"#" + (((FunccallContext)_localctx).IDENTIFIER!=null?((FunccallContext)_localctx).IDENTIFIER.getText():null) + "\"><SPAN CLASS=\"ident\">" + (((FunccallContext)_localctx).IDENTIFIER!=null?((FunccallContext)_localctx).IDENTIFIER.getText():null) + "</SPAN></A> " + ((FunccallContext)_localctx).subparamlist.t;
 				}
 				break;
 			case CONST_DEF_IDENTIFIER:
@@ -2959,7 +2960,7 @@ public class gramaticaParser extends Parser {
 				((FunccallContext)_localctx).CONST_DEF_IDENTIFIER = match(CONST_DEF_IDENTIFIER);
 				setState(475);
 				((FunccallContext)_localctx).subparamlist = subparamlist();
-				((FunccallContext)_localctx).t =  "<A HREF=\"#" + (((FunccallContext)_localctx).CONST_DEF_IDENTIFIER!=null?((FunccallContext)_localctx).CONST_DEF_IDENTIFIER.getText():null) + "\">" + "<SPAN CLASS=\"cte\">" + (((FunccallContext)_localctx).CONST_DEF_IDENTIFIER!=null?((FunccallContext)_localctx).CONST_DEF_IDENTIFIER.getText():null) + "</SPAN>" + ((FunccallContext)_localctx).subparamlist.t;
+				((FunccallContext)_localctx).t =  "<A HREF=\"#" + (((FunccallContext)_localctx).CONST_DEF_IDENTIFIER!=null?((FunccallContext)_localctx).CONST_DEF_IDENTIFIER.getText():null) + "\">" + "<SPAN CLASS=\"cte\">" + (((FunccallContext)_localctx).CONST_DEF_IDENTIFIER!=null?((FunccallContext)_localctx).CONST_DEF_IDENTIFIER.getText():null) + "</SPAN></A>" + ((FunccallContext)_localctx).subparamlist.t;
 				}
 				break;
 			default:

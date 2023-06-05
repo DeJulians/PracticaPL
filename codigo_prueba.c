@@ -1,7 +1,7 @@
 #define FECHA 2023
 #define CODIGO 10
 integer n_alumnos;
-float __valor_real;
+float valor_real;
 string nombre = "alumno1";
 
 string codificar_cadena(string cadena, integer desplazamiento){
