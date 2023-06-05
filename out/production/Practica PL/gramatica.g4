@@ -12,6 +12,7 @@ program:  dcllist{principal += $dcllist.t;}
           pagina += funcionesCod;
           pagina += principal;
           pagina += "</BODY></HTML>";
+          name += ".html";
           File f = new File(name);
           try {
               f.createNewFile();
@@ -47,7 +48,7 @@ varlist returns [String t]: vardef ';' varlist1{$t = $vardef.t + ";<br>" + $varl
 varlist1 returns [String t]: vardef ';' varlist1{$t = $vardef.t + ";<br>" + $varlist1.t;}
                            | {$t = "";};
 
-vardef returns [String t]: tbas IDENTIFIER{$t = $tbas.t + " <SPAN CLASS=\"ident\">" + $IDENTIFIER.text + "</SPAN>;<br>";}
+vardef returns [String t]: tbas IDENTIFIER{$t = $tbas.t + " <SPAN CLASS=\"ident\">" + $IDENTIFIER.text + "</SPAN>";}
       | tbas IDENTIFIER '=' simpvalue{$t = $tbas.t + " <SPAN CLASS=\"ident\">" + $IDENTIFIER.text + "</SPAN> = " + $simpvalue.t;};
 
 tbas returns [String t]: TYPE{$t = "<SPAN CLASS=\"palres\">" + $TYPE.text + "</SPAN>";}

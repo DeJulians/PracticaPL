@@ -18,13 +18,12 @@ public interface principal1 {
                                                if (result == JFileChooser.APPROVE_OPTION) {
                                                    File file = fileChooser.getSelectedFile();
                                                    String filePath = file.getAbsolutePath();
-                                                   args[0] = filePath;
 
                                                    // Aquí puedes llamar a tu código de análisis y procesamiento de ANTLR
                                                    // utilizando el archivo seleccionado
                                                    try {
 // Preparar el fichero de entrada para asignarlo al analizador léxico
-                                                       CharStream input = CharStreams.fromFileName(args[0]);
+                                                       CharStream input = CharStreams.fromFileName(filePath);
 // Crear el objeto correspondiente al analizador léxico con el fichero de
 // entrada
                                                        gramaticaLexer analex = new gramaticaLexer(input);
@@ -33,7 +32,7 @@ public interface principal1 {
                                                        CommonTokenStream tokens = new CommonTokenStream(analex);
 // Crear el objeto correspondiente al analizador sintáctico
                                                        gramaticaParser anasint = new gramaticaParser(tokens);
-                                                       anasint.name = args[0];
+                                                       anasint.name = file.getName();
 /*
 Si se quiere pasar al analizador algún objeto externo con el que trabajar,
 este deberá ser de una clase del mismo paquete

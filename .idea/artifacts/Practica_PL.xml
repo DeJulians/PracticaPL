@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
-  <artifact type="jar" build-on-make="true" name="Practica PL:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/Practica_PL_jar</output-path>
+  <artifact type="jar" build-on-make="true" name="Practica PL">
+    <output-path>$PROJECT_DIR$/out/artifacts/Practica_PL</output-path>
     <root id="archive" name="Practica PL.jar">
       <element id="module-output" name="Practica PL" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../../../../../Program Files/ANTLR/antlr-4.11.1-complete.jar" path-in-jar="/" />

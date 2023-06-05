@@ -186,7 +186,8 @@ public class gramaticaParser extends Parser {
 			          pagina += funcionesCod;
 			          pagina += principal;
 			          pagina += "</BODY></HTML>";
-			          File f = new File("codigo_prueba.html");
+			          name += ".html";
+			          File f = new File(name);
 			          try {
 			              f.createNewFile();
 			              FileWriter fw = new FileWriter(f);
@@ -976,7 +977,7 @@ public class gramaticaParser extends Parser {
 				((VardefContext)_localctx).tbas = tbas();
 				setState(192);
 				((VardefContext)_localctx).IDENTIFIER = match(IDENTIFIER);
-				((VardefContext)_localctx).t =  ((VardefContext)_localctx).tbas.t + " <SPAN CLASS=\"ident\">" + (((VardefContext)_localctx).IDENTIFIER!=null?((VardefContext)_localctx).IDENTIFIER.getText():null) + "</SPAN>;<br>";
+				((VardefContext)_localctx).t =  ((VardefContext)_localctx).tbas.t + " <SPAN CLASS=\"ident\">" + (((VardefContext)_localctx).IDENTIFIER!=null?((VardefContext)_localctx).IDENTIFIER.getText():null) + "</SPAN>";
 				}
 				break;
 			case 2:
